@@ -24,5 +24,5 @@ Route::get('/admin/index','Admin\index\IndexController@index');
 Route::get('/admin/article','Admin\index\ArticleController@index');     //文章
 Route::get('/admin/comment','Admin\index\CommentController@index');
 Route::get('/admin/announcement','Admin\index\AnnouncementController@index');
-Route::get('/auth/login','Admin\auth\LoginController@index');       //用户名登入
-
+Route::get('/login','Admin\auth\LoginController@index');       //用户名登入
+Route::post('auth/login', 'Admin\auth\LoginController@check');

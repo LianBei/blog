@@ -30,10 +30,11 @@
     <div style="">
     <h2 class="form-signin-heading">管理员登录</h2>
     <div><label for="userName" class="sr-only">用户名</label>
-    <input type="text" id="account" name="username" class="form-control" placeholder="请输入用户名" required autofocus autocomplete="off" maxlength="10">
+    <input type="text" name="account" class="form-control" placeholder="请输入用户名" required autofocus autocomplete="off" maxlength="10">
     <label for="userPwd" class="sr-only">密码</label>
-    <input type="password" id="password" name="userpwd" class="form-control" placeholder="请输入密码" required autocomplete="off" maxlength="18">
-    <button class="btn btn-lg btn-primary btn-block" type="submit" id="signinSubmit">登录</button>
+    <input type="password" name="password" class="form-control" placeholder="请输入密码" required autocomplete="off" maxlength="18">
+      <input type="hidden" name="_token" value="{{csrf_token()}}">
+      <button class="btn btn-lg btn-primary btn-block" type="submit" id="signinSubmit">登录</button>
     </div>
     </div>
   </form>
