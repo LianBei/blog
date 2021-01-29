@@ -1,13 +1,13 @@
 <?php
 namespace App\Http\Controllers\Admin\auth;
 
+use App\Http\Controllers\Controller;
 use App\Models\Admin;
 use Illuminate\Http\Request;
-use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Input;
 
-class LoginController extends Controller{
+class LoginController extends Controller {
     public function index(){
 //        echo Hash::make('1');
         return view('Admin/auth/login');
