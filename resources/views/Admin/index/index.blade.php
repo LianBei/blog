@@ -24,7 +24,7 @@
                     <td>登录者: <span>{{session('admin_name')}}</span>，这是您第 <span>13</span> 次登录</td>
                 </tr>
                 <tr>
-                    <td>上次登录时间: 2016-01-08 15:50:28 </td>
+                    <td>上次登录时间: {{session('admin_updated_at')}} </td>
                 </tr>
                 </tbody>
             </table>
