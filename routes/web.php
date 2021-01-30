@@ -18,5 +18,7 @@ Route::group(['middleware'=>['adminLogin']],function (){        //seesion路由�
     Route::get('/admin/index','Admin\index\IndexController@index');     //报告页
     Route::get('/admin/article','Admin\index\ArticleController@index');   //文章页
     Route::get('/admin/comment','Admin\index\CommentController@index');     //评论页
-    Route::get('/admin/announcement','Admin\index\AnnouncementController@index');//公告页
+    Route::get('/admin/announcement','Admin\index\AnnouncementController@index');//公告页\
+    //退出登录
+    Route::get('logout','Admin\auth\LoginController@logout');
 });

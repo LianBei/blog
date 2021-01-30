@@ -20,12 +20,11 @@
         <div class="table-responsive">
             <table class="table table-striped table-hover">
                 <tbody>
-                @foreach($row as $)
                 <tr>
-                    <td>登录者: <span>admin</span>，这是您第 <span>13</span> 次登录</td>
+                    <td>登录者: <span>{{session('admin_name')}}</span>，这是您第 <span>13</span> 次登录</td>
                 </tr>
                 <tr>
-                    <td>上次登录时间: 2016-01-08 15:50:28 , 上次登录IP: ::1:55570</td>
+                    <td>上次登录时间: 2016-01-08 15:50:28 </td>
                 </tr>
                 </tbody>
             </table>
