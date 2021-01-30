@@ -20,6 +20,7 @@
         <div class="table-responsive">
             <table class="table table-striped table-hover">
                 <tbody>
+                @foreach($row as $)
                 <tr>
                     <td>登录者: <span>admin</span>，这是您第 <span>13</span> 次登录</td>
                 </tr>
