@@ -53,7 +53,7 @@
                             <td>{{$user->username}}</td>
                             <td>{{$user->count}}</td>
                             <td>{{$user->created_at}}</td>
-                            <td><a rel="6" href="/admin/delete?id={{$user->id}}">删除</a></td>
+                            <td><a href="#details" href="/admin/details?id={{$user->id}}">详情</a><a rel="6" href="/admin/delete?id={{$user->id}}">删除</a></td>
                         </tr>
                         @endforeach
                     </tbody>
@@ -74,6 +74,28 @@
             </footer>
             <!-- 模态框（Modal） -->
             <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title" id="myModalLabel">增加文章</h4>
+                        </div>
+                        <form action="/admin/add" id="xiugai" method="post">
+                            <input type="hidden" name="_token" value="{{csrf_token()}}">
+                            <input type="hidden" name="id" id="id">
+                            <div class="modal-body">标题:<input type="text" name="title" id="title"></div>
+                            <div class="modal-body">作者:<input type="text" name="user_id" id="user_id"></div>
+                            <div class="modal-body">内容:<input type="text" name="content" id="content"></div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                                <button type="submit" class="btn btn-primary">提交更改</button>
+                            </div>
+                        </form>
+                    </div>
+                </div><!-- /.modal -->
+            </div>
+
+            <div class="modal fade" id="details" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
