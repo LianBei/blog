@@ -1,11 +1,18 @@
 <?php
 namespace App\Http\Controllers\Admin\index;
 
-use Illuminate\Routing\Controller;
+use App\Http\Controllers\Controller;
+use App\Models\Article;
+use App\Models\Comment;
 
-class IndexController extends Controller{
+class IndexController extends Controller {
     public function index(){
-
+        $article = new Article();
+        $comment = new Comment();
+        $data = $article->join('user','user.id','=','article.user_id')->select('article.*','user.username')->paginate('5');
+        foreach ($data as $key=>$value){
+            $data[$key]->count = $comment->where('article_id', $value->id)->count();
+        }
         return view('Admin/index/index');
     }
 }

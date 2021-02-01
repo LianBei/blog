@@ -6,50 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 class CommonModel extends Model{
     protected $table = '';
     /**
-     * @param int $pageNumber 分页
-     * @param array $condition where条件
-     * @param array $order 排序
-     * @return mixed
-     */
-    public function getAllData(int $pageNumber , array $condition=[], array $order= array('id'=>'asc')){
-        $table = DB::table($this->table);
-        if ($pageNumber==null){
-            if ($condition==null){
-                foreach ($order as $field => $value){
-                    $table = $table->orderBy($field,$value);
-                }
-                $data = $table->get();
-            }
-            else{
-                foreach ($condition as $key => $value){
-                    $table = $table->where($key,$value);
-                }
-                foreach ($order as $field => $value){
-                    $table =$table->orderBy($field,$value);
-                }
-                $data = $table->get();
-            }
-            return $data;
-        }else{
-            if ($condition==null){
-                foreach ($order as $field => $value){
-                    $table = $table->orderBy($field,$value);
-                }
-                $data = $table->paginate($pageNumber);
-            }else{
-                foreach ($condition as $key => $value){
-                    $table = $table->where($key,$value);
-                }
-                foreach ($order as $field => $value){
-                    $table =$table->orderBy($field,$value);
-                }
-                $data = $table->paginate($pageNumber);
-            }
-            return $data;
-        }
-    }
-
-    /**
      * 获取所有数据
      *
      * @param int $pageNumber  每页显示的数量
@@ -57,7 +13,7 @@ class CommonModel extends Model{
      * @param array $order     排序条件
      * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator|\Illuminate\Support\Collection
      */
-    public function getAllData2(int $pageNumber, array $condition=[] ,array $order=['id'=>'asc']) {
+    public function getAllData(int $pageNumber, array $condition=[] ,array $order=['id'=>'asc']) {
         $obj = DB::table($this->table);
         if ($pageNumber) {
             if ($condition) {
@@ -105,10 +61,8 @@ class CommonModel extends Model{
      * @return mixed
      */
     public function insertData(array $arr){
-        return DB::table($this->table)->inset($arr);
+        return DB::table($this->table)->insert($arr);
     }
-
-
     /**
      * 更新数据，支持条件查询
      * @param array $condition

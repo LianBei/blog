@@ -30,7 +30,7 @@ class LoginController extends Controller {
             $admin = new Admin();
             $row = $admin->getRow(['account' => $account]);
             if (Hash::check($password,$row->password)){
-               session(['admin_id'=>$row->id,'admin_account'=>$row->account, 'admin_name' => $row->admin_name,'admin_updated_at'=>$row->updated_at]);
+               session(['admin_id'=>$row->id,'admin_account'=>$row->account, 'admin_name' => $row->admin_name,'admin_created_at'=>$row->created_at]);
                return redirect('/admin/index');
            }else{
                 return redirect()->back()->with('error','密码错误');
@@ -44,7 +44,7 @@ class LoginController extends Controller {
         Session::forget('admin_id');
         Session::forget('admin_account');
         Session::forget('admin_name');
-        Session::forget('admin_updated_at');
+        Session::forget('admin_created_at');
         return redirect('login');
     }
 }

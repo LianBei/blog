@@ -1,94 +1,65 @@
 @extends('Admin.layout.layout')
 @section('content')
-
+    {{--提示语句固定值--}}
+    @if(session('error'))
+        <h2>{{session('error')}}</h2>
+    @endif
+    @if(session('success'))
+        <h2>{{session('success')}}</h2>
+    @endif
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
     <div class="col-sm-9 col-sm-offset-3 col-md-10 col-lg-10 col-md-offset-2 main" id="main">
-        <form action="/Article/checkAll" method="post" >
+        <form action="/admin/add" method="post" >
             <h1 class="page-header">操作</h1>
-            <ol class="breadcrumb">
-                <li><a href="add-article.html">增加文章</a></li>
+            <ol class="breadcrumb" style="height: 50px">
+                <div class="col-md-3 col-sm-4 col-xs-12">
+                    <li><a href="#myModal" data-toggle="modal"><button class="add btn btn-primary">增加文章</button></a></li>
+                </div>
+                <div class="col-xs-12 col-md-9 col-sm-8">
+                    <form action="" method="post" class="navbar-form navbar-right" role="search">
+                        <div class="input-group">
+                            <input type="text" class="form-control" autocomplete="off" placeholder="键入关键字搜索" maxlength="15">
+                            <span class="input-group-btn"><button class="btn btn-default" type="submit">搜索</button></span>
+                        </div>
+                    </form>
+                </div>
             </ol>
-            <h1 class="page-header">管理 <span class="badge">7</span></h1>
+            <h1 class="page-header">管理 </h1>
             <div class="table-responsive">
                 <table class="table table-striped table-hover">
                     <thead>
                     <tr>
-                        <th><span class="glyphicon glyphicon-th-large"></span> <span class="visible-lg">选择</span></th>
-                        <th><span class="glyphicon glyphicon-file"></span> <span class="visible-lg">标题</span></th>
-                        <th><span class="glyphicon glyphicon-list"></span> <span class="visible-lg">栏目</span></th>
-                        <th class="hidden-sm"><span class="glyphicon glyphicon-tag"></span> <span class="visible-lg">标签</span></th>
-                        <th class="hidden-sm"><span class="glyphicon glyphicon-comment"></span> <span class="visible-lg">评论</span></th>
-                        <th><span class="glyphicon glyphicon-time"></span> <span class="visible-lg">日期</span></th>
-                        <th><span class="glyphicon glyphicon-pencil"></span> <span class="visible-lg">操作</span></th>
+                        <th>选择</th>
+                        <th>标题</th>
+                        <th>作者</th>
+                        <th>评论数</th>
+                        <th>发布时间</th>
+                        <th>操作</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td><input type="checkbox" class="input-control" name="checkbox[]" value="" /></td>
-                        <td class="article-title">这是测试的文章标题这是测试的文章标题这是测试的文章标题这是测试的文章标题</td>
-                        <td>这个是栏目</td>
-                        <td class="hidden-sm">PHP、JavaScript</td>
-                        <td class="hidden-sm">0</td>
-                        <td>2015-12-03</td>
-                        <td><a href="update-article.html">修改</a> <a rel="6">删除</a></td>
-                    </tr>
-                    <tr>
-                        <td><input type="checkbox" class="input-control" name="checkbox[]" value="" /></td>
-                        <td class="article-title">这是测试的文章标题这是测试的文章标题这是测试的文章标题这是测试的文章标题</td>
-                        <td>这个是栏目</td>
-                        <td class="hidden-sm">PHP、JavaScript</td>
-                        <td class="hidden-sm">0</td>
-                        <td>2015-12-03</td>
-                        <td><a href="">修改</a> <a rel="6">删除</a></td>
-                    </tr>
-                    <tr>
-                        <td><input type="checkbox" class="input-control" name="checkbox[]" value="" /></td>
-                        <td class="article-title">这是测试的文章标题这是测试的文章标题这是测试的文章标题这是测试的文章标题</td>
-                        <td>这个是栏目</td>
-                        <td class="hidden-sm">PHP、JavaScript</td>
-                        <td class="hidden-sm">0</td>
-                        <td>2015-12-03</td>
-                        <td><a href="">修改</a> <a rel="6">删除</a></td>
-                    </tr>
-                    <tr>
-                        <td><input type="checkbox" class="input-control" name="checkbox[]" value="" /></td>
-                        <td class="article-title">这是测试的文章标题这是测试的文章标题这是测试的文章标题这是测试的文章标题</td>
-                        <td>这个是栏目</td>
-                        <td class="hidden-sm">PHP、JavaScript</td>
-                        <td class="hidden-sm">0</td>
-                        <td>2015-12-03</td>
-                        <td><a href="">修改</a> <a rel="6">删除</a></td>
-                    </tr>
-                    <tr>
-                        <td><input type="checkbox" class="input-control" name="checkbox[]" value="" /></td>
-                        <td class="article-title">这是测试的文章标题这是测试的文章标题这是测试的文章标题这是测试的文章标题</td>
-                        <td>这个是栏目</td>
-                        <td class="hidden-sm">PHP、JavaScript</td>
-                        <td class="hidden-sm">0</td>
-                        <td>2015-12-03</td>
-                        <td><a href="">修改</a> <a rel="6">删除</a></td>
-                    </tr>
-                    <tr>
-                        <td><input type="checkbox" class="input-control" name="checkbox[]" value="" /></td>
-                        <td class="article-title">这是测试的文章标题这是测试的文章标题这是测试的文章标题这是测试的文章标题</td>
-                        <td>这个是栏目</td>
-                        <td class="hidden-sm">PHP、JavaScript</td>
-                        <td class="hidden-sm">0</td>
-                        <td>2015-12-03</td>
-                        <td><a href="">修改</a> <a rel="6">删除</a></td>
-                    </tr>
-                    <tr>
-                        <td><input type="checkbox" class="input-control" name="checkbox[]" value="" /></td>
-                        <td class="article-title">这是测试的文章标题这是测试的文章标题这是测试的文章标题这是测试的文章标题</td>
-                        <td>这个是栏目</td>
-                        <td class="hidden-sm">PHP、JavaScript</td>
-                        <td class="hidden-sm">0</td>
-                        <td>2015-12-03</td>
-                        <td><a href="">修改</a> <a rel="6">删除</a></td>
-                    </tr>
+                        @foreach($data as $user)
+                        <tr>
+                            <td><input type="checkbox" class="input-control" name="checkbox[]" value="" /></td>
+                            <td>{{$user->title}}</td>
+                            <td>{{$user->username}}</td>
+                            <td>{{$user->count}}</td>
+                            <td>{{$user->created_at}}</td>
+                            <td><a rel="6" href="/admin/delete?id={{$user->id}}">删除</a></td>
+                        </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>
-            <footer class="message_footer">
+           <footer class="message_footer">
                 <nav>
                     <div class="btn-toolbar operation" role="toolbar">
                         <div class="btn-group" role="group"> <a class="btn btn-default" onClick="select()">全选</a> <a class="btn btn-default" onClick="reverse()">反选</a> <a class="btn btn-default" onClick="noselect()">不选</a> </div>
@@ -96,146 +67,41 @@
                             <button type="submit" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="删除全部选中" name="checkbox_delete">删除</button>
                         </div>
                     </div>
-                    <ul class="pagination pagenav">
-                        <li class="disabled"><a aria-label="Previous"> <span aria-hidden="true">&laquo;</span> </a> </li>
-                        <li class="active"><a href="#">1</a></li>
-                        <li><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li><a href="#">4</a></li>
-                        <li><a href="#">5</a></li>
-                        <li><a href="#" aria-label="Next"> <span aria-hidden="true">&raquo;</span> </a> </li>
-                    </ul>
+                    <div class="pagination pagenav">
+                        {{$data -> links()}}
+                    </div>
                 </nav>
             </footer>
+            <!-- 模态框（Modal） -->
+            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title" id="myModalLabel">增加文章</h4>
+                        </div>
+                        <form action="/admin/add" id="xiugai" method="post">
+                            <input type="hidden" name="_token" value="{{csrf_token()}}">
+                            <input type="hidden" name="id" id="id">
+                            <div class="modal-body">标题:<input type="text" name="title" id="title"></div>
+                            <div class="modal-body">作者:<input type="text" name="user_id" id="user_id"></div>
+                            <div class="modal-body">内容:<input type="text" name="content" id="content"></div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                                <button type="submit" class="btn btn-primary">提交更改</button>
+                            </div>
+                        </form>
+                    </div>
+                </div><!-- /.modal -->
+            </div>
         </form>
     </div>
-    <div class="modal fade" id="seeUserInfo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog" role="document">
-            <form action="" method="post">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title" >个人信息</h4>
-                    </div>
-                    <div class="modal-body">
-                        <table class="table" style="margin-bottom:0px;">
-                            <thead>
-                            <tr> </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td wdith="20%">姓名:</td>
-                                <td width="80%"><input type="text" value="王雨" class="form-control" name="truename" maxlength="10" autocomplete="off" /></td>
-                            </tr>
-                            <tr>
-                                <td wdith="20%">用户名:</td>
-                                <td width="80%"><input type="text" value="admin" class="form-control" name="username" maxlength="10" autocomplete="off" /></td>
-                            </tr>
-                            <tr>
-                                <td wdith="20%">电话:</td>
-                                <td width="80%"><input type="text" value="18538078281" class="form-control" name="usertel" maxlength="13" autocomplete="off" /></td>
-                            </tr>
-                            <tr>
-                                <td wdith="20%">旧密码:</td>
-                                <td width="80%"><input type="password" class="form-control" name="old_password" maxlength="18" autocomplete="off" /></td>
-                            </tr>
-                            <tr>
-                                <td wdith="20%">新密码:</td>
-                                <td width="80%"><input type="password" class="form-control" name="password" maxlength="18" autocomplete="off" /></td>
-                            </tr>
-                            <tr>
-                                <td wdith="20%">确认密码:</td>
-                                <td width="80%"><input type="password" class="form-control" name="new_password" maxlength="18" autocomplete="off" /></td>
-                            </tr>
-                            </tbody>
-                            <tfoot>
-                            <tr></tr>
-                            </tfoot>
-                        </table>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-                        <button type="submit" class="btn btn-primary">提交</button>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
-    <!--个人登录记录模态框-->
-    <div class="modal fade" id="seeUserLoginlog" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" >登录记录</h4>
-                </div>
-                <div class="modal-body">
-                    <table class="table" style="margin-bottom:0px;">
-                        <thead>
-                        <tr>
-                            <th>登录IP</th>
-                            <th>登录时间</th>
-                            <th>状态</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td>::1:55570</td>
-                            <td>2016-01-08 15:50:28</td>
-                            <td>成功</td>
-                        </tr>
-                        <tr>
-                            <td>::1:64377</td>
-                            <td>2016-01-08 10:27:44</td>
-                            <td>成功</td>
-                        </tr>
-                        <tr>
-                            <td>::1:64027</td>
-                            <td>2016-01-08 10:19:25</td>
-                            <td>成功</td>
-                        </tr>
-                        <tr>
-                            <td>::1:57081</td>
-                            <td>2016-01-06 10:35:12</td>
-                            <td>成功</td>
-                        </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">朕已阅</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!--微信二维码模态框-->
-    <div class="modal fade user-select" id="WeChat" tabindex="-1" role="dialog" aria-labelledby="WeChatModalLabel">
-        <div class="modal-dialog" role="document" style="margin-top:120px;max-width:280px;">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="WeChatModalLabel" style="cursor:default;">微信扫一扫</h4>
-                </div>
-                <div class="modal-body" style="text-align:center"> <img src="images/weixin.jpg" alt="" style="cursor:pointer"/> </div>
-            </div>
-        </div>
-    </div>
-    <!--提示模态框-->
-    <div class="modal fade user-select" id="areDeveloping" tabindex="-1" role="dialog" aria-labelledby="areDevelopingModalLabel">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="areDevelopingModalLabel" style="cursor:default;">该功能正在日以继夜的开发中…</h4>
-                </div>
-                <div class="modal-body"> <img src="images/baoman/baoman_01.gif" alt="深思熟虑" />
-                    <p style="padding:15px 15px 15px 100px; position:absolute; top:15px; cursor:default;">很抱歉，程序猿正在日以继夜的开发此功能，本程序将会在以后的版本中持续完善！</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" data-dismiss="modal">朕已阅</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
+    <script>
+        $('.add').click(function () {
+            $('#id').val('')
+            $('#title').val('');
+            $('#user_id').val('');
+            $('#content').val('');
+        });
+    </script>
 @stop
