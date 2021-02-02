@@ -18,8 +18,8 @@ Route::group(['middleware'=>['adminLogin']],function (){        //seesion路由�
     Route::get('admin/index','Admin\index\IndexController@index');     //报告页
     Route::get('admin/article','Admin\index\ArticleController@index');   //文章页
     Route::get('admin/comment','Admin\index\CommentController@index');     //评论页
+    Route::get('admin/details','Admin\index\ArticleController@details');     //详情页
     Route::get('admin/delete','Admin\index\ArticleController@delete');     //删除
-    Route::get('admin/details','Admin\index\ArticleController@details');
     Route::post('admin/add','Admin\index\ArticleController@add');     //添加
     //退出登录
     Route::get('logout','Admin\auth\LoginController@logout');

@@ -57,12 +57,10 @@ class ArticleController extends Controller {
     }
     public function details(){
         $id = Input::get('id');
-        $article = new  Article();
-        $data = $article ->getRow(['id'=>$id]);
-        if ($data){
-            return redirect()->back()->with('success','插入成功');
-        }else{
-            return redirect()->back()->with('error','插入失败');
-        }
+        $article = new Article();
+        $data = $article->join('user','user.id','=','article.user_id')->select('article.*','user.username')->first(['id'=>$id]);
+        $commnts = $article->getAllData(0, ['id' => $id]);
+        $count = count($commnts);
+        return view('Admin/index/details',compact('data', 'count'));
     }
 }
