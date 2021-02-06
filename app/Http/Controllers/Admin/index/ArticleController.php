@@ -55,12 +55,14 @@ class ArticleController extends Controller {
              }
         }
     }
+    //详情
     public function details(){
         $id = Input::get('id');
         $article = new Article();
-        $data = $article->join('user','user.id','=','article.user_id')->select('article.*','user.username')->first(['id'=>$id]);
-        $commnts = $article->getAllData(0, ['id' => $id]);
-        $count = count($commnts);
-        return view('Admin/index/details',compact('data', 'count'));
+        $data = $article->join('user','user.id','=','article.user_id')->select('article.*','user.username')->where(['article.id'=>$id])->first();
+//        //获取评论数
+//        $commnts = $article->getAllData(5, ['id' => $id]);
+//        $count = count($commnts);
+        return view('Admin/index/details',compact('data'));
     }
 }

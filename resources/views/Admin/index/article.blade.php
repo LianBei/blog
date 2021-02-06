@@ -64,7 +64,7 @@
                     <div class="btn-toolbar operation" role="toolbar">
                         <div class="btn-group" role="group"> <a class="btn btn-default" onClick="select()">全选</a> <a class="btn btn-default" onClick="reverse()">反选</a> <a class="btn btn-default" onClick="noselect()">不选</a> </div>
                         <div class="btn-group" role="group">
-                            <button type="submit" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="删除全部选中" name="checkbox_delete">删除</button>
+                            <button type="submit" class="btn btn-default" data-toggle="tooltip" data-placement="bottom" title="删除全部选中" name="checkbox_delete" href="/admin/delete?id={{$user->id}}">删除</button>
                         </div>
                     </div>
                     <div class="pagination pagenav">

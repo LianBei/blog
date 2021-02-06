@@ -39,7 +39,7 @@
                         <td>{{$user->username}}</td>
                         <td>{{$user->title}}</td>
                         <td>{{$user->created_at}}</td>
-                        <td><a rel="1" name="see">查看</a> <a rel="1" name="delete" href="/admin/delete?id={{$user->id}}">删除</a></td>
+                        <td> <a rel="1" name="delete" href="/admin/delete?id={{$user->id}}">删除</a></td>
                     </tr>
                     @endforeach
                     </tbody>
