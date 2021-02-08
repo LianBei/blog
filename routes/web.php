@@ -11,7 +11,6 @@
 |
 */
 //前台
-Route::get('/','')
 //后台
 //用户名登入
 Route::get('login','Admin\auth\LoginController@index');
