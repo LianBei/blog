@@ -33,6 +33,19 @@ class ArticleController extends Controller {
         $data['title'] = Input::post('title');
         $data['user_id'] = Input::post('user_id');
         $data['content'] = Input::post('content');
+//图片获取
+//        $file = $request->file('pic');
+//        $ext = $file->getClientOriginalExtension();
+        $file = $request->file('pic');
+        $ext = $file->getClientOriginalExtension();
+        if ($ext != 'jpg' && $ext!='png') {
+            return redirect()->back()->with('error', '图片格式错误');
+        } else {
+            $path = $request->file('pic')->store('public/images/article');
+            $arr = explode('/', $path);
+            $data['pic'] = end($arr);
+        }
+
         $rule = [
             'title' =>'required',
             'user_id'=>'required',

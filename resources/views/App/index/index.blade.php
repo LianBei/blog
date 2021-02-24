@@ -36,14 +36,15 @@
 			</div>
 			@foreach($data as $user)
 				<article class="excerpt excerpt-1" style="">
-					<a class="focus" href="#" target="_blank" ><img class="thumb" src="{{asset('storage/images/'.$user->pic)}}" style="display: inline;"></a>
-					<header><a class="cat" href="#" title="MZ-NetBlog主题" >MZ-NetBlog主题<i></i></a>
-						<h2><a href="#" target="_blank" >{{$user->title}}</a>
+					<a class="focus" href="#" target="_blank" ><img class="thumb" src="{{asset('storage/images/article/'.$user->pic)}}" style="display: inline;"></a>
+					<header><a class="cat" href="#" >MZ-NetBlog主题<i></i></a>
+{{--						target="_blank 点击时会打开新页面--}}
+						<h2><a href="/app/index/details?id={{$user->id}}" target="_blank" >{{$user->title}}</a>
 						</h2>
 					</header>
 					<p class="meta">
 						<time class="time"><i class="glyphicon glyphicon-time"></i> {{$user->updated_at}}</time>
-						<span class="views"><i class="glyphicon glyphicon-eye-open"></i> {{$user->comment_id}}</span> <a class="comment" href="##comment" title="评论" target="_blank" ><i class="glyphicon glyphicon-comment"></i> 4</a>
+						<span class="views"><i class="glyphicon glyphicon-eye-open"></i></span> <a class="comment" href="##comment" title="评论" target="_blank" ><i class="glyphicon glyphicon-comment"></i> 4</a>
 					</p>
 					<p class="note"><?php echo mb_substr("$user->content", 0, 150);?></p>
 				</article>
@@ -89,10 +90,10 @@
 			@foreach($data as $row)
 			<ul>
 				<li><a href="#" ><span class="thumbnail">
-				<img class="thumb" src="{{asset('storage/images/'.$row->pic)}}" alt=""  style="display: block;">
+				<img class="thumb" src="{{asset('storage/images/article/'.$row->pic)}}" alt=""  style="display: block;">
 			</span><span class="text">{{$row->title}}</span><span class="muted"><i class="glyphicon glyphicon-time"></i>
 				{{$row->updated_at}}
-			</span><span class="muted"><i class="glyphicon glyphicon-eye-open"></i>{{$row->comment_id}}</span></a></li>
+			</span><span class="muted"><i class="glyphicon glyphicon-eye-open"></i></span></a></li>
 			</ul>
 			@endforeach
 		</div>

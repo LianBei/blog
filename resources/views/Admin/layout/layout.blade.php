@@ -12,9 +12,8 @@
     <link rel="stylesheet" type="text/css" href="{{asset('back/css/font-awesome.min.css')}}">
     <link rel="apple-touch-icon-precomposed" href="{{asset('storage/images/icon/icon.png')}}">
     <link rel="shortcut icon" href="{{asset('storage/images/icon/favicon.ico')}}">
-    <script src="{{asset('back/js/jquery-2.1.4.min.js')}}"></script>
+    <script src="{{asset('back/js/jquery-3.2.1.min.js')}}"></script>
 <!--[if gte IE 9]>
-  <script src="{{asset('back/js/jquery-1.11.1.min.js')}}" type="text/javascript"></script>
   <script src="{{asset('back/js/html5shiv.min.js')}}" type="text/javascript"></script>
   <script src="{{asset('back/js/respond.min.js')}}" type="text/javascript"></script>
   <script src="{{asset('back/js/selectivizr-min.js')}}" type="text/javascript"></script>

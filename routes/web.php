@@ -23,6 +23,8 @@ Route::get('registered','App\auth\RegisteredController@index');
 Route::post('app/auth/registered', 'App\auth\RegisteredController@check');
 Route::get('app/auth/list','App\index\ListController@index');
 Route::group(['middleware' => ['checkLogin']],function (){
+    //详情页
+    Route::get('app/index/details','App\index\IndexController@details');
 
 });
 

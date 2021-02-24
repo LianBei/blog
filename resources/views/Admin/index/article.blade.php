@@ -3,11 +3,10 @@
     {{--提示语句固定值--}}
     <div class="col-sm-9 col-sm-offset-3 col-md-10 col-lg-10 col-md-offset-2 main" id="main">
        @include('Admin.layout.prompt')
-        <form action="/admin/add" method="post" >
             <h1 class="page-header">操作</h1>
             <ol class="breadcrumb" style="height: 50px">
                 <div class="col-md-3 col-sm-4 col-xs-12">
-                    <li><a href="#myModal" data-toggle="modal"><button class="add btn btn-primary">增加文章</button></a></li>
+                    <a href="#myModal" data-toggle="modal"><button class="add btn btn-primary">增加文章</button></a>
                 </div>
                 <div class="col-xs-12 col-md-9 col-sm-8">
                     <form action="" method="post" class="navbar-form navbar-right" role="search">
@@ -66,12 +65,14 @@
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                             <h4 class="modal-title" id="myModalLabel">增加文章</h4>
                         </div>
-                        <form action="/admin/add" id="xiugai" method="post">
+{{--              enctype="multipart/form-data"图片必须加          --}}
+                        <form action="/admin/add" id="xiugai" method="post" enctype="multipart/form-data">
                             <input type="hidden" name="_token" value="{{csrf_token()}}">
                             <input type="hidden" name="id" id="id">
                             <div class="modal-body">标题:<input type="text" name="title" id="title"></div>
                             <div class="modal-body">作者:<input type="text" name="user_id" id="user_id"></div>
                             <div class="modal-body">内容:<input type="text" name="content" id="content"></div>
+                            <div class="modal-body">图片:<input type="file" name="pic" id="pic"></div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
                                 <button type="submit" class="btn btn-primary">提交更改</button>
@@ -80,7 +81,6 @@
                     </div>
                 </div><!-- /.modal -->
             </div>
-        </form>
     </div>
     <script>
         $('.add').click(function () {
