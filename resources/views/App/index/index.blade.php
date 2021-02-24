@@ -89,7 +89,7 @@
 			<h3>最新评论文章</h3>
 			@foreach($data as $row)
 			<ul>
-				<li><a href="#" ><span class="thumbnail">
+				<li><a href="/app/index/details?id={{$row->id}}" ><span class="thumbnail">
 				<img class="thumb" src="{{asset('storage/images/article/'.$row->pic)}}" alt=""  style="display: block;">
 			</span><span class="text">{{$row->title}}</span><span class="muted"><i class="glyphicon glyphicon-time"></i>
 				{{$row->updated_at}}

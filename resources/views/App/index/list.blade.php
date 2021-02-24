@@ -9,7 +9,7 @@
             @foreach($data as $user)
             <article class="excerpt excerpt-5"><a class="focus" href="#" target="_blank" ><img class="thumb" src="{{asset('storage/images/article/'.$user->pic)}}" style="display: inline;"></a>
                 <header><a class="cat" href="#">MZ-NetBlog主题<i></i></a>
-                    <h2><a href="#" target="_blank" >{{$user->title}}</a></h2>
+                    <h2><a href="/app/index/details?id={{$user->id}}" target="_blank" >{{$user->title}}</a></h2>
                 </header>
                 <p class="meta">
                     <time class="time"><i class="glyphicon glyphicon-time"></i> {{$user->updated_at}}</time>
@@ -49,7 +49,7 @@
             <h3>最新评论文章</h3>
             <ul>
                 @foreach($new_data as $row)
-                <li><a href="#" ><span class="thumbnail">
+                <li><a href="/app/index/details?id={{$row->id}}" ><span class="thumbnail">
 <img class="thumb" src="{{asset('storage/images/article/'.$row->pic)}}" alt=""  style="display: block;">
 </span><span class="text">{{$row->title}}</span><span class="muted"><i class="glyphicon glyphicon-time"></i>
 {{$row->updated_at}}
