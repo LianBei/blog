@@ -1,9 +1,8 @@
 <?php
-
 namespace App\Http\Middleware;
 use Closure;
 
-class CheckLogin
+class CheckLoginin
 {
     /**
      * Handle an incoming request.
@@ -14,10 +13,11 @@ class CheckLogin
      */
     public function handle($request, Closure $next)
     {
-        if (session('admin_id')){
+        if (session('user_id')){
             return $next($request);
         }else{
-            return redirect('/login')->with('error','请先登录');
+            return redirect('/app/login')->with('error','请先登录');
         }
     }
 }
+

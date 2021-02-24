@@ -8,25 +8,28 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Input;
 
 class LoginController extends Controller {
-    public function index(Request $request) {
-        $data['name'] = Input::post('name');
+    public function index(){
+        return view('App/auth/login');
+    }
+    public function check(Request $request) {
+        $data['account'] = Input::post('account');
         $data['password'] = Input::post('password');
         $rule = [
-            'name' => 'required | max:8 | exists:user,name',
+            'account' => 'required | max:8 | exists:user,account',
             'password' => 'required | max:16'
         ];
         $message = [
-            'name.required' => '用户名必填',
+            'account.required' => '用户名必填',
             'password.required' => '密码必填',
-            'name.max' => '用户名不能超过8个字',
-            'name.exists' => '用户名不存在',
+            'account.max' => '用户名不能超过8个字',
+            'account.exists' => '用户名不存在',
             'password.max' => '密码不能超过16个字',
         ];
         if ($this->validate($request, $rule , $message)) {
             $user = new User();
-            $row = $user->where('name', $data['name'])->first();
+            $row = $user->where('account', $data['account'])->first();
             if (Hash::check($data['password'] , $row->password)){
-                session(['admin_name' => $data['name']]);
+                session(['user_account' => $data['account'],'user_id'=>$row['id']]);
                 return redirect('/');
             } else {
                 return redirect()->back()->with('error' , '密码错误');

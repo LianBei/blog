@@ -11,10 +11,25 @@
 |
 */
 //前台
+//首页
+Route::get('/','App\index\IndexController@index');
+//用户登录
+Route::get('app/login','App\auth\LoginController@index');
+//用户登录表单提交
+Route::post('app/auth/login','App\auth\LoginController@check');
+//用户注册
+Route::get('registered','App\auth\RegisteredController@index');
+//用户注册表单提交
+Route::post('app/auth/registered', 'App\auth\RegisteredController@check');
+Route::get('app/auth/list','App\index\ListController@index');
+Route::group(['middleware' => ['checkLogin']],function (){
+
+});
+
 //后台
-//用户名登入
+//管理员登入
 Route::get('login','Admin\auth\LoginController@index');
-//用户名表单提交
+//管理员表单提交
 Route::post('auth/login', 'Admin\auth\LoginController@check');
 //seesion路由保护
 Route::group(['middleware'=>['adminLogin']],function (){

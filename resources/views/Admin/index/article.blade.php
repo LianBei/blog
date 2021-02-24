@@ -1,22 +1,8 @@
 @extends('Admin.layout.layout')
 @section('content')
     {{--提示语句固定值--}}
-    @if(session('error'))
-        <h2>{{session('error')}}</h2>
-    @endif
-    @if(session('success'))
-        <h2>{{session('success')}}</h2>
-    @endif
-    @if ($errors->any())
-        <div class="alert alert-danger">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
     <div class="col-sm-9 col-sm-offset-3 col-md-10 col-lg-10 col-md-offset-2 main" id="main">
+       @include('Admin.layout.prompt')
         <form action="/admin/add" method="post" >
             <h1 class="page-header">操作</h1>
             <ol class="breadcrumb" style="height: 50px">

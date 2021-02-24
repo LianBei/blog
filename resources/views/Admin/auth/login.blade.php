@@ -22,10 +22,10 @@
   <!--[if lt IE 9]>
   <![endif]-->
 </head>
-
 <body class="user-select">
 <div class="container">
   <div class="siteIcon"><img src="{{asset('storage/images/icon/icon.png')}}" alt="" data-toggle="tooltip" data-placement="top" title="欢迎使用异清轩博客管理系统" draggable="false" /></div>
+  @include('Admin.layout.prompt')
   <form action="/auth/login" method="post" autocomplete="off" class="form-signin">
     <div style="">
     <h2 class="form-signin-heading">管理员登录</h2>
