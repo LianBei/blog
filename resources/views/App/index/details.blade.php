@@ -10,9 +10,8 @@
 	  </span> <span class="item article-meta-source" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="来源：连蓓大佬的博客"><i class="glyphicon glyphicon-globe"></i> 连蓓大佬的博客</span> <span class="item article-meta-category" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="MZ-NetBlog主题"><i class="glyphicon glyphicon-list"></i> <a href="#" title="MZ-NetBlog主题" >MZ-NetBlog主题</a></span> <span class="item article-meta-views" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="浏览量：219"><i class="glyphicon glyphicon-eye-open"></i> 219</span> <span class="item article-meta-comment" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="评论量"><i class="glyphicon glyphicon-comment"></i> 4</span> </div>
                 </header>
                 <article class="article-content">
-                    <p><img data-original="images/201610181557196870.jpg" src="images/201610181557196870.jpg" alt="" /></p>
-                    <p>文章效果示例，文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字。</p>
-                    <pre class="prettyprint lang-cs">代码示例：</pre>
+                    <p><img data-original="images/201610181557196870.jpg" src="{{asset('storage/images/article/'.$data->pic)}}" alt="" /></p>
+                    <p>{{$data->content}}</p>
                     <div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a href="#" class="bds_tieba" data-cmd="tieba" title="分享到百度贴吧"></a><a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a></div>
 
                     <script>                  window._bd_share_config = { "common": { "bdSnsKey": {}, "bdText": "", "bdMini": "2", "bdMiniList": false, "bdPic": "", "bdStyle": "1", "bdSize": "32" }, "share": {} }; with (document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=0.js?cdnversion=' + ~(-new Date() / 36e5)];</script>
@@ -23,16 +22,11 @@
                     <div class="title">
                         <h3>相关推荐</h3>
                     </div>
+                    @foreach($row as $data)
                     <ul>
-                        <li><a href="#" title="" >用DTcms做一个独立博客网站（响应式模板）-MZ-NetBlog主题</a></li>
-                        <li><a href="#" title="" >用DTcms做一个独立博客网站（响应式模板）-MZ-NetBlog主题</a></li>
-                        <li><a href="#" title="" >用DTcms做一个独立博客网站（响应式模板）-MZ-NetBlog主题</a></li>
-                        <li><a href="#" title="" >用DTcms做一个独立博客网站（响应式模板）-MZ-NetBlog主题</a></li>
-                        <li><a href="#" title="" >用DTcms做一个独立博客网站（响应式模板）-MZ-NetBlog主题</a></li>
-                        <li><a href="#" title="" >用DTcms做一个独立博客网站（响应式模板）-MZ-NetBlog主题</a></li>
-                        <li><a href="#" title="" >用DTcms做一个独立博客网站（响应式模板）-MZ-NetBlog主题</a></li>
-                        <li><a href="#" title="" >用DTcms做一个独立博客网站（响应式模板）-MZ-NetBlog主题</a></li>
+                        <li><a href="/app/index/details?id={{$data->id}}" title="" >{{$data->title}}</a></li>
                     </ul>
+                        @endforeach
                 </div>
                 <div class="title" id="comment">
                     <h3>评论</h3>
@@ -97,14 +91,15 @@
             </div>
             <div class="widget widget_hot">
                 <h3>最新评论文章</h3>
-                @foreach($data as $row)
+                @foreach($row as $data)
                 <ul>
                     <li><a href="#" ><span class="thumbnail">
-<img class="thumb" src="{{asset('storage/images/article/'.$row->pic)}}" style="display: block;">
-</span><span class="text">{{$row->title}}</span><span class="muted"><i class="glyphicon glyphicon-time"></i>
-{{$row->updated_at}}
+<img class="thumb" src="{{asset('storage/images/article/'.$data->pic)}}" style="display: block;">
+</span><span class="text">{{$data->title}}</span><span class="muted"><i class="glyphicon glyphicon-time"></i>
+{{$data->updated_at}}
 </span><span class="muted"><i class="glyphicon glyphicon-eye-open"></i></span></a></li>
                 </ul>
+                    @endforeach
             </div>
             <div class="widget widget_sentence">
 

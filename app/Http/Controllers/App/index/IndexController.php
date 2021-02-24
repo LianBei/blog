@@ -14,10 +14,12 @@ class IndexController extends Controller{
         $data = $Article->getAllData('6');
         return view('App/index/index',compact('data'));
     }
+
     public function details(){
         $id = Input::get('id');
         $article = new Article();
+        $row = $article->getAllData('5');
         $data = $article->join('user','user.id','=','article.user_id')->select('article.*','user.username')->where(['article.id'=>$id])->first();
-        return view('App/index/details',compact('data'));
+        return view('App/index/details',compact('data','row'));
     }
 }
