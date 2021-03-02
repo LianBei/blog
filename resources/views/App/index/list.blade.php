@@ -22,7 +22,7 @@
     <aside class="sidebar">
         <div class="fixed">
             <div class="widget widget_search">
-                <form class="navbar-form" action="/app/auth/list" method="get">
+                <form class="navbar-form" action="/app/index/list" method="get">
                     <div class="input-group">
                         <input type="text" name="keyword" class="form-control" size="35" placeholder="请输入关键字" maxlength="15" autocomplete="off">
                         <span class="input-group-btn">
@@ -33,28 +33,9 @@
         </div>
         <div class="widget widget_hot">
             <h3>最新评论文章</h3>
-            @foreach($new_data as $row)
-            <ul>
-                <li><a href="/app/index/details?id={{$row->id}}" ><span class="thumbnail">
-<img class="thumb" src="{{asset('storage/images/article/'.$row->pic)}}" alt=""  style="display: block;">
-</span><span class="text">{{$row->title}}</span><span class="muted"><i class="glyphicon glyphicon-time"></i>
-{{$row->updated_at}}
-</span><span class="muted"><i class="glyphicon glyphicon-eye-open"></i></span></a></li>
-            </ul>
-            @endforeach
+            @include('App.layout.left' , ['data' => $data ])
         </div>
-        <div class="widget widget_sentence">
 
-            <a href="#" rel="nofollow" title="MZ-NetBlog主题" >
-                <img style="width: 100%" src="{{asset('storage/images/ad.jpg')}}" alt="MZ-NetBlog主题" ></a>
-
-        </div>
-        <div class="widget widget_sentence">
-
-            <a href="#" rel="nofollow" title="专业网站建设" >
-                <img style="width: 100%" src="{{asset('storage/images/201610241224221511.jpg')}}" alt="专业网站建设" ></a>
-
-        </div>
     </aside>
 </section>
 <footer class="footer">

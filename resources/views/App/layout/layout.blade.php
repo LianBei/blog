@@ -13,7 +13,7 @@
     <link rel="stylesheet" type="text/css" href="{{asset('css/style.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('css/font-awesome.min.css')}}">
     <link rel="apple-touch-icon-precomposed" href="{{asset('storage/images/icon.png')}}">
-    <link rel="shortcut icon" href="{{asset('storage/images/favicon.ico')}}">
+    <link rel="shortcut icon" href="{{asset('storage/images/title.jpg')}}">
     <script src="{{asset('js/jquery-2.1.4.min.js')}}"></script>
     <script src="{{asset('js/nprogress.js')}}"></script>
     <script src="{{asset('js/jquery.lazyload.min.js')}}"></script>

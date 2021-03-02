@@ -6,7 +6,7 @@
     <table>
         <tbody>
         <tr>
-            <td bgcolor="#7fffd4" align="center">
+            <td bgcolor="white" align="center">
                 <font style="FonT-siZe: 14pt" color="#000066">
                     <b>{{$data->title}}</b>
                 </font>
@@ -33,6 +33,7 @@
                     <tbody>
                     <td width=100%>
                         <div style="MArGin: 15px" align="center">
+                            <img src="{{asset('storage/images/article/'.$data->pic)}}" alt="">
                             {{$data->content}}
                         </div>
                     </td>

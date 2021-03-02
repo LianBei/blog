@@ -1,18 +1,21 @@
 @extends('App.layout.layout')
 @section('content')
     <section class="container">
+        @include('Admin.layout.prompt')
         <div class="content-wrap">
             <div class="content">
                 <header class="article-header">
                     <h1 class="article-title"><a href="#" title="用DTcms做一个独立博客网站（响应式模板）" >{{$data->title}}</a></h1>
                     <div class="article-meta"> <span class="item article-meta-time">
 	  <time class="time" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="发表时间：2016-10-14"><i class="glyphicon glyphicon-time"></i> 2016-10-14</time>
-	  </span> <span class="item article-meta-source" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="来源：连蓓大佬的博客"><i class="glyphicon glyphicon-globe"></i> 连蓓大佬的博客</span> <span class="item article-meta-category" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="MZ-NetBlog主题"><i class="glyphicon glyphicon-list"></i> <a href="#" title="MZ-NetBlog主题" >MZ-NetBlog主题</a></span> <span class="item article-meta-views" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="浏览量：219"><i class="glyphicon glyphicon-eye-open"></i> 219</span> <span class="item article-meta-comment" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="评论量"><i class="glyphicon glyphicon-comment"></i> 4</span> </div>
+	  </span> <span class="item article-meta-source" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="来源：羊毛博客网"><i class="glyphicon glyphicon-globe"></i> 羊毛博客网</span> <span class="item article-meta-category" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="MZ-NetBlog主题"><i class="glyphicon glyphicon-list"></i> <a href="#" title="MZ-NetBlog主题" >MZ-NetBlog主题</a></span> <span class="item article-meta-views" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="浏览量：219"><i class="glyphicon glyphicon-eye-open"></i> 219</span> <span class="item article-meta-comment" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="评论量"><i class="glyphicon glyphicon-comment"></i> 4</span> </div>
                 </header>
                 <article class="article-content">
-                    <p><img data-original="images/201610181557196870.jpg" src="{{asset('storage/images/article/'.$data->pic)}}" alt="" /></p>
-                    <p>{{$data->content}}</p>
+                    @if($data->pic!='default.png')
+                   <img src="{{asset('storage/images/article/'.$data->pic)}}" alt="" />
+                        @endif
 
+                    <p>{{$data->content}}</p>
                 </article>
                 </div>
                 <div class="relates">
@@ -29,15 +32,16 @@
                     <h3>评论</h3>
                 </div>
                 <div id="respond">
-                    <form id="comment-form" name="comment-form" action="" method="POST">
+                    <form id="comment-form" name="comment-form" action="/app/comment" method="POST">
                         <div class="comment">
-                            <input name="" id="" class="form-control" size="22" placeholder="您的昵称（必填）" maxlength="15" autocomplete="off" tabindex="1" type="text">
-                            <input name="" id="" class="form-control" size="22" placeholder="您的网址或邮箱（非必填）" maxlength="58" autocomplete="off" tabindex="2" type="text">
                             <div class="comment-box">
                                 <textarea placeholder="您的评论或留言（必填）" name="comment-textarea" id="comment-textarea" cols="100%" rows="3" tabindex="3"></textarea>
+
                                 <div class="comment-ctrl">
                                     <div class="comment-prompt" style="display: none;"> <i class="fa fa-spin fa-circle-o-notch"></i> <span class="comment-prompt-text">评论正在提交中...请稍后</span> </div>
                                     <div class="comment-success" style="display: none;"> <i class="fa fa-check"></i> <span class="comment-prompt-text">评论提交成功...</span> </div>
+                                    {{--    必须要写的  --}}
+                                    <input type="hidden" name="_token" value="{{csrf_token()}}">
                                     <button type="submit" name="comment-submit" id="comment-submit" tabindex="4">评论</button>
                                 </div>
                             </div>
@@ -47,11 +51,10 @@
                 </div>
                 <div id="postcomments">
                     <ol id="comment_list" class="commentlist">
-                        <li class="comment-content"><span class="comment-f">#2</span><div class="comment-main"><p><a class="address" href="#" rel="nofollow"  >连蓓大佬的博客</a><span class="time">(2016/10/28 11:41:03)</span><br>不错的网站主题，看着相当舒服</p></div></li>
-                        <li class="comment-content"><span class="comment-f">#1</span><div class="comment-main"><p><a class="address" href="#" rel="nofollow"  >连蓓大佬的博客</a><span class="time">(2016/10/14 21:02:39)</span><br>博客做得好漂亮哦！</p></div></li></ol>
+                        <li class="comment-content"><span class="comment-f">#2</span><div class="comment-main"><p><a class="address" href="#" rel="nofollow"  >羊毛博客网</a><span class="time">(2016/10/28 11:41:03)</span><br>的网站主题，看着相当舒服</p></div></li>
+                        <li class="comment-content"><span class="comment-f">#1</span><div class="comment-main"><p><a class="address" href="#" rel="nofollow"  >羊毛博客网</a><span class="time">(2016/10/14 21:02:39)</span><br>博客做得好漂亮哦！</p></div></li></ol>
                 </div>
             </div>
-        </div>
         <aside class="sidebar">
             <div class="fixed">
                 <div class="widget widget-tabs">
@@ -77,38 +80,18 @@
                     </div>
                 </div>
                 <div class="widget widget_search">
-                    <form class="navbar-form" action="/Search" method="post">
+                    <form class="navbar-form" action="/app/index/list" method="get">
                         <div class="input-group">
                             <input type="text" name="keyword" class="form-control" size="35" placeholder="请输入关键字" maxlength="15" autocomplete="off">
                             <span class="input-group-btn">
-		<button class="btn btn-default btn-search" name="search" type="submit">搜索</button>
+		<button class="btn btn-default btn-search" type="submit" >搜索</button>
 		</span> </div>
                     </form>
                 </div>
             </div>
             <div class="widget widget_hot">
                 <h3>最新评论文章</h3>
-                @foreach($row as $data)
-                <ul>
-                    <li><a href="#" ><span class="thumbnail">
-<img class="thumb" src="{{asset('storage/images/article/'.$data->pic)}}" style="display: block;">
-</span><span class="text">{{$data->title}}</span><span class="muted"><i class="glyphicon glyphicon-time"></i>
-{{$data->updated_at}}
-</span><span class="muted"><i class="glyphicon glyphicon-eye-open"></i></span></a></li>
-                </ul>
-                    @endforeach
-            </div>
-            <div class="widget widget_sentence">
-
-                <a href="#"   rel="nofollow" title="MZ-NetBlog主题" >
-                    <img style="width: 100%" src="images/ad.jpg" alt="MZ-NetBlog主题" ></a>
-
-            </div>
-            <div class="widget widget_sentence">
-
-                <a href="#"   rel="nofollow" title="专业网站建设" >
-                    <img style="width: 100%" src="images/201610241224221511.jpg" alt="专业网站建设" ></a>
-
+                @include('App.layout.left' , ['new_data' => $row])
             </div>
         </aside>
     </section>

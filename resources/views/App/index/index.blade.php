@@ -11,8 +11,8 @@
 				</ol>
 				<div class="carousel-inner" role="listbox">
 					<div class="item active">
-						<a href="#"   title="连蓓大佬的博客源码" >
-							<img src="{{asset('storage/images//201610181557196870.jpg')}}" alt="连蓓大佬的博客源码" class="img-responsive"></a>
+						<a href="#"   title="羊毛博客网源码" >
+							<img src="{{asset('storage/images//201610181557196870.jpg')}}" alt="羊毛博客网源码" class="img-responsive"></a>
 					</div>
 					<div class="item">
 						<a href="#"   title="专业网站建设" >
@@ -36,7 +36,7 @@
 			</div>
 			@foreach($data as $user)
 				<article class="excerpt excerpt-1" style="">
-					<a class="focus" href="#"   ><img class="thumb" src="{{asset('storage/images/article/'.$user->pic)}}" style="display: inline;"></a>
+					<a class="focus" href="/app/index/details?id={{$user->id}}"   ><img class="thumb" src="{{asset('storage/images/article/'.$user->pic)}}" style="display: inline;"></a>
 					<header><a class="cat" href="#" >MZ-NetBlog主题<i></i></a>
 {{--						target="_blank 点击时会打开新页面--}}
 						<h2><a href="/app/index/details?id={{$user->id}}"   >{{$user->title}}</a>
@@ -76,7 +76,7 @@
 				</div>
 			</div>
 			<div class="widget widget_search">
-				<form class="navbar-form" action="/app/auth/list" method="get">
+				<form class="navbar-form" action="/app/index/list" method="get">
 					<div class="input-group">
 						<input type="text" name="keyword" class="form-control" size="35" placeholder="请输入关键字" maxlength="15" autocomplete="off">
 						<span class="input-group-btn">
@@ -87,29 +87,7 @@
 		</div>
 		<div class="widget widget_hot">
 			<h3>最新评论文章</h3>
-			@foreach($data as $row)
-			<ul>
-				<li><a href="/app/index/details?id={{$row->id}}" ><span class="thumbnail">
-				<img class="thumb" src="{{asset('storage/images/article/'.$row->pic)}}" alt=""  style="display: block;">
-			</span><span class="text">{{$row->title}}</span><span class="muted"><i class="glyphicon glyphicon-time"></i>
-				{{$row->updated_at}}
-			</span><span class="muted"><i class="glyphicon glyphicon-eye-open"></i></span></a></li>
-			</ul>
-			@endforeach
-		</div>
-		<div class="widget widget_sentence">
-			<a href="#"   rel="nofollow" title="专业网站建设" >
-				<img style="width: 100%" src="{{asset('storage/images//201610241224221511.jpg')}}" alt="专业网站建设" ></a>
-		</div>
-		<div class="widget widget_sentence">
-			<a href="#"   rel="nofollow" title="MZ-NetBlog主题" >
-				<img style="width: 100%" src="{{asset('storage/images/ad.jpg')}}" alt="MZ-NetBlog主题" ></a>
-		</div>
-		<div class="widget widget_sentence">
-			<h3>友情链接</h3>
-			<div class="widget-sentence-link">
-				<a href="#" title="网站建设"   >网站建设</a>&nbsp;&nbsp;&nbsp;
-			</div>
+			@include('App.layout.left' , ['new_data' => $data])
 		</div>
 	</aside>
 </section>

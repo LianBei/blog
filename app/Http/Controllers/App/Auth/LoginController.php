@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Session;
 
 class LoginController extends Controller {
     public function index(){
@@ -29,11 +30,19 @@ class LoginController extends Controller {
             $user = new User();
             $row = $user->where('account', $data['account'])->first();
             if (Hash::check($data['password'] , $row->password)){
-                session(['user_account' => $data['account'],'user_id'=>$row['id']]);
+                session(['user_account' => $data['account'],'user_id'=>$row['id'],'pic'=>$row['pic'],'user_username'=>$row['username']]);
                 return redirect('/');
             } else {
                 return redirect()->back()->with('error' , '密码错误');
             }
         }
+    }
+    /**
+     * 退出登录
+     */
+    public function logout(){
+        Session::forget('user_id');
+        Session::forget('user_account');
+        return redirect('/');
     }
 }

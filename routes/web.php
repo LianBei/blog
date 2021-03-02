@@ -21,10 +21,19 @@ Route::post('app/auth/login','App\auth\LoginController@check');
 Route::get('registered','App\auth\RegisteredController@index');
 //用户注册表单提交
 Route::post('app/auth/registered', 'App\auth\RegisteredController@check');
-Route::get('app/auth/list','App\index\ListController@index');
+//列表页
+Route::get('app/index/list','App\index\ListController@index');
+//详情页
+Route::get('app/index/details','App\index\IndexController@details');
 Route::group(['middleware' => ['checkLogin']],function (){
-    //详情页
-    Route::get('app/index/details','App\index\IndexController@details');
+    //新增文章
+    Route::get('app/index/add','App\index\IndexController@add');
+    //文章表单提交
+    Route::post('app/add','App\index\IndexController@check');
+    //评论表单提交
+    Route::post('app/comment','App\index\IndexController@comment');
+    //退出登录
+    Route::get('app/logout','App\auth\LoginController@logout');
 });
 
 //后台

@@ -5,15 +5,18 @@ namespace App\Http\Controllers\App\auth;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Input;
 
 class RegisteredController extends Controller{
     public function index(){
         return view('App/auth/registered');
     }
+
     public function check(Request $request){
         $data['account'] = Input::post('account');
         $data['password'] = Input::post('password');
+        $data['password']=Hash::make($data['password']);
         $data['username'] = Input::post('username');
         //图片获取
 //        $file = $request->file('pic');
@@ -48,6 +51,7 @@ class RegisteredController extends Controller{
             if ($row) {
                 return redirect()->back()->with('error', '用户名已存在');
             }else{
+
                 $row = $user->insertData($data);
                 if ($row){
                     return redirect('/app/login');
