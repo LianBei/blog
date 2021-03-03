@@ -30,7 +30,7 @@ class LoginController extends Controller {
             $user = new User();
             $row = $user->where('account', $data['account'])->first();
             if (Hash::check($data['password'] , $row->password)){
-                session(['user_account' => $data['account'],'user_id'=>$row['id'],'pic'=>$row['pic'],'user_username'=>$row['username']]);
+                session(['user_account' => $data['account'],'user_id'=>$row['id'],'pic'=>$row['pic'],'user_username'=>$row['username'],'user_password'=>$row['password']]);
                 return redirect('/');
             } else {
                 return redirect()->back()->with('error' , '密码错误');

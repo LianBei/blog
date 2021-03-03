@@ -22,7 +22,7 @@
                     <div class="title">
                         <h3>相关推荐</h3>
                     </div>
-                    @foreach($row as $data)
+                    @foreach($new_article as $data)
                     <ul>
                         <li><a href="/app/index/details?id={{$data->id}}" title="" >{{$data->title}}</a></li>
                     </ul>
@@ -35,8 +35,8 @@
                     <form id="comment-form" name="comment-form" action="/app/comment" method="POST">
                         <div class="comment">
                             <div class="comment-box">
-                                <textarea placeholder="您的评论或留言（必填）" name="comment-textarea" id="comment-textarea" cols="100%" rows="3" tabindex="3"></textarea>
-
+                                <input type="hidden" name="id" id="id" value="{{$data->id}}">
+                                <textarea placeholder="您的评论或留言（必填）" name="comment" id="comment" cols="100%" rows="3" tabindex="3"></textarea>
                                 <div class="comment-ctrl">
                                     <div class="comment-prompt" style="display: none;"> <i class="fa fa-spin fa-circle-o-notch"></i> <span class="comment-prompt-text">评论正在提交中...请稍后</span> </div>
                                     <div class="comment-success" style="display: none;"> <i class="fa fa-check"></i> <span class="comment-prompt-text">评论提交成功...</span> </div>
@@ -51,8 +51,16 @@
                 </div>
                 <div id="postcomments">
                     <ol id="comment_list" class="commentlist">
-                        <li class="comment-content"><span class="comment-f">#2</span><div class="comment-main"><p><a class="address" href="#" rel="nofollow"  >羊毛博客网</a><span class="time">(2016/10/28 11:41:03)</span><br>的网站主题，看着相当舒服</p></div></li>
-                        <li class="comment-content"><span class="comment-f">#1</span><div class="comment-main"><p><a class="address" href="#" rel="nofollow"  >羊毛博客网</a><span class="time">(2016/10/14 21:02:39)</span><br>博客做得好漂亮哦！</p></div></li></ol>
+                        @foreach($comment_data as $row)
+                        <li class="comment-content">
+                            <span class="comment-f">{{$row->id}}</span>
+                            <div class="comment-main">
+                                <p><a class="address" href="#" rel="nofollow"  >{{$row->user_id}}</a>
+                                    <span class="time">({{$row->created_at}})</span><br>{{$row->comment}}</p>
+                            </div>
+                        </li>
+                        @endforeach
+                    </ol>
                 </div>
             </div>
         <aside class="sidebar">
@@ -91,7 +99,7 @@
             </div>
             <div class="widget widget_hot">
                 <h3>最新评论文章</h3>
-                @include('App.layout.left' , ['new_data' => $row])
+                @include('App.layout.left' , ['new_data' => $new_article])
             </div>
         </aside>
     </section>

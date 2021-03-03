@@ -26,10 +26,18 @@ Route::get('app/index/list','App\index\ListController@index');
 //详情页
 Route::get('app/index/details','App\index\IndexController@details');
 Route::group(['middleware' => ['checkLogin']],function (){
+    //个人信息表
+    Route::get('app/informationself','App\index\InformationselfController@index');
+    //个人信息表单提交
+    Route::post('app/index/selfAdd','App\index\InformationselfController@selfAdd');
     //新增文章
     Route::get('app/index/add','App\index\IndexController@add');
     //文章表单提交
     Route::post('app/add','App\index\IndexController@check');
+    //删除
+    Route::get('app/delete','App\index\InformationselfController@delete');
+    //编辑
+    Route::get('app/edit','App\index\InformationselfController@edit');
     //评论表单提交
     Route::post('app/comment','App\index\IndexController@comment');
     //退出登录

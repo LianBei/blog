@@ -20,9 +20,11 @@ class IndexController extends Controller{
     public function details(){
         $id = Input::get('id');
         $article = new Article();
-        $row = $article->getAllData('4');
+        $comment = new Comment();
+        $new_article = $article->getAllData('4');
+        $comment_data= $comment->getAllData('4',['article_id'=>$id]);
         $data = $article->join('user','user.id','=','article.user_id')->select('article.*','user.username')->where(['article.id'=>$id])->first();
-        return view('App/index/details',compact('data','row'));
+        return view('App/index/details',compact('data','new_article','comment_data'));
     }
     public function add(){
         $Article = new Article();
@@ -68,8 +70,8 @@ class IndexController extends Controller{
 
     public function comment(Request $request){
         $data['user_id']=session('user_id');
-        $data['comment']=Input::post('comment-textarea');
-        $data['article']=
+        $data['comment']=Input::post('comment');
+        $data['article_id']=Input::post('id');
         $rule = [
             'comment' => 'required | max:500',
         ];
@@ -87,4 +89,6 @@ class IndexController extends Controller{
             }
         }
     }
+
+
 }

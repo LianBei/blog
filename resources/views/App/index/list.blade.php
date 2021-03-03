@@ -4,11 +4,11 @@
     <div class="content-wrap">
         <div class="content">
             <div class="title">
-                <h3 style="line-height: 1.3">MZ-NetBlog主题</h3>
+                <h3 style="line-height: 1.3">热门博客</h3>
             </div>
             @foreach($data as $user)
-            <article class="excerpt excerpt-5"><a class="focus" href="#" ><img class="thumb" src="{{asset('storage/images/article/'.$user->pic)}}" style="display: inline;"></a>
-                <header><a class="cat" href="#">MZ-NetBlog主题<i></i></a>
+            <article class="excerpt excerpt-5"><a class="focus" href="/app/index/details?id={{$user->id}}" ><img class="thumb" src="{{asset('storage/images/article/'.$user->pic)}}" style="display: inline;"></a>
+                <header><a class="cat" href="#">作者：{{$user->user_id}}<i></i></a>
                     <h2><a href="/app/index/details?id={{$user->id}}" >{{$user->title}}</a></h2>
                 </header>
                 <p class="meta">
