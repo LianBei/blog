@@ -11,7 +11,7 @@
 				</ol>
 				<div class="carousel-inner" role="listbox">
 					<div class="item active">
-						<a href="#"   title="羊毛博客网源码" >
+						<a href="#"   title="羊毛博客网源码">
 							<img src="{{asset('storage/images//201610181557196870.jpg')}}" alt="羊毛博客网源码" class="img-responsive"></a>
 					</div>
 					<div class="item">
