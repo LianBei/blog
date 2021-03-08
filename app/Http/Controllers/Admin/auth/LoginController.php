@@ -13,7 +13,11 @@ class LoginController extends Controller {
 //        echo Hash::make('1');
         return view('Admin/auth/login');
     }
-
+    /**
+     * 登录表单提交
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
     public function check(Request $request){
         $account = Input::get('account');
         $password = Input::get('password');
@@ -30,12 +34,13 @@ class LoginController extends Controller {
             $admin = new Admin();
             $row = $admin->getRow(['account' => $account]);
             if (Hash::check($password,$row->password)){
-               session(['admin_id'=>$row->id,'admin_account'=>$row->account, 'admin_name' => $row->admin_name,'admin_created_at'=>$row->created_at]);
-               return redirect('/admin/index');
-           }else{
+                session(['admin_id'=>$row->id,'admin_account'=>$row->account, 'admin_name' => $row->admin_name,'admin_updated_at'=>$row->updated_at]);
+                $time = $admin->updateData(['id'=>session('admin_id')],['updated_at'=>date('Y-m-d H:i:s')]);
+                return redirect('/admin/index');
+            }else{
                 return redirect()->back()->with('error','密码错误');
             }
-       }
+        }
     }
     /**
      * 退出登录

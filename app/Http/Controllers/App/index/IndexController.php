@@ -12,16 +12,24 @@ use Illuminate\Support\Facades\Input;
 
 class IndexController extends Controller{
     public function index(){
+        $keyword = Input::get('keyword')??"";
         $Article = new Article();
-        $data = $Article->getAllData('5');
-        return view('App/index/index',compact('data'));
+        $comment = new Comment();
+        $data = $Article->join('user','user.id','=','article.user_id')->select('article.*','user.username')->orderBy('created_at','desc')->paginate('4');
+
+        //计算评论数
+        foreach ($data as $key => $value) {
+            $data[$key]->count = $comment->where('article_id', $value->id)->count();
+        }
+        $first_data=$Article->getRow(['id'=>1]);
+        return view('App/index/index',compact('data','first_data','keyword'));
     }
 
     public function details(){
         $id = Input::get('id');
         $article = new Article();
         $comment = new Comment();
-        $new_article = $article->getAllData('4');
+        $new_article =  $article->join('user','user.id','=','article.user_id')->select('article.*','user.username')->paginate('5');
         $comment_data= $comment->getAllData('4',['article_id'=>$id]);
         $data = $article->join('user','user.id','=','article.user_id')->select('article.*','user.username')->where(['article.id'=>$id])->first();
         return view('App/index/details',compact('data','new_article','comment_data'));

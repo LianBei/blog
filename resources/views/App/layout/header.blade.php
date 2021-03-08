@@ -13,7 +13,7 @@
                     <li><a href="/app/index/list">列表页</a></li>
                     <li><a href="/app/index/add">新增页</a></li>
                     @if(!session('user_id'))
-                    <li><a href="/app/login" >登录</a></li>
+                        <li><a href="/app/login" >登录</a></li>
                     @endif
                     @if(session('user_id'))
                         <li class="dropdown"> <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><img src="{{asset('storage/images/article/'.session('pic'))}}" style="width: 40px; height: 40px" alt=""><?php echo session('user_username')?><span class="caret"></span></a>
@@ -49,21 +49,16 @@
                         </tr>
                         <tr>
                             <td wdith="20%">网名:</td>
-                            <td width="80%"><input type="text" class="form-control" name="uaername" maxlength="10" autocomplete="off" value="{{session('user_username')}}"/></td>
+                            <td width="80%"><input type="text" class="form-control" name="username" maxlength="10" autocomplete="off" value="{{session('user_username')}}"/></td>
                         </tr>
+                        {{--    必须要写的  --}}
+                        <input type="hidden" name="_token" value="{{csrf_token()}}">
                         <tr>
                             <td wdith="20%">账号:</td>
                             <td width="80%"><input type="text" class="form-control" name="account" maxlength="10" autocomplete="off" value="{{session('user_account')}}"/></td>
                         </tr>
-                        <tr>
-                            <td wdith="20%">密码:</td>
-                            <td width="80%"><input type="password" name="password" class="form-control" autocomplete="off" maxlength="18" value="{{session('user_password')}}"/></td>
-                        </tr>
 
                         </tbody>
-                        <tfoot>
-                        <tr></tr>
-                        </tfoot>
                     </table>
                 </div>
                 <div class="modal-footer">

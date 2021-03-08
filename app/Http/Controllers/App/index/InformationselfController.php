@@ -6,7 +6,9 @@ namespace App\Http\Controllers\App\index;
 
 use App\Http\Controllers\Controller;
 use App\Models\Article;
-use App\Models\Comment;
+use App\Models\User;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Input;
 
 class InformationselfController extends Controller{
@@ -14,7 +16,7 @@ class InformationselfController extends Controller{
         $session_id=session('user_id');
         $search = Input::get('keyword');
         $Article = new Article();
-        $new_data = $Article->getAllData('5',['user_id'=>$session_id],['id'=>'desc']);
+        $new_data = $Article->join('user','user.id','=','article.user_id')->select('article.*','user.username')->where(['user_id'=>$session_id])->paginate('5');
         if ($search) {
             $data = $Article->getLikeData('5', ['title' => $search]);
         } else {
@@ -37,35 +39,89 @@ class InformationselfController extends Controller{
 
     //编辑数据
     public function edit(){
-
+        $edit_id=Input::get('id');
+        $article = new Article();
+        $edit_data = $article->getRow(['id'=>$edit_id]);
+        return view('App/index/edit',compact('edit_data'));
     }
-    public function selfAdd(){
-        $self_data['id']=session('id');
-        $self_data['account']=Input::post('account');
-        $self_data['password']=Input::post('password');
-        $self_data['username']=Input::post('username');
-        $self_data['pic']=Input::post('pic');
-            //图片获取
-//        $file = $request->file('pic');
-//        $ext = $file->getClientOriginalExtension();
+
+    //编辑表单提交
+    public function check(Request $request){
+        $id = Input::post('id');
+        $check_data['title']=Input::post('title');
+        $check_data['content']=Input::post('content');
         $file = $request->file('pic');
-        $ext = $file->getClientOriginalExtension();
-        if ($ext != 'jpg' && $ext!='png') {
-            return redirect()->back()->with('error', '图片格式错误');
-        } else {
-            $path = $request->file('pic')->store('public/images/article');
-            //获取 / 以后的字符串
-            $arr = explode('/', $path);
-            $data['pic'] = end($arr);
+        if ($file) {
+            $ext = $file->getClientOriginalExtension();
+            if ($ext != 'jpg' && $ext!='png') {
+                return redirect()->back()->with('error', '图片格式错误');
+            } else {
+                $path = $request->file('pic')->store('public/images/article');
+                //获取 / 以后的字符串
+                $arr = explode('/', $path);
+                $check_data['pic'] = end($arr);
+            }
         }
         $rule=[
-          'account'=>'request | max:32',
-          'username'=>'request',
+            'title'=>'required | max:32',
+            'content'=>'required',
         ];
         $message=[
-          'account.request'=>'账号必填',
-          'account.max'=>'账号不得超过32',
-            'username.request'=>'网名必填'
+            'title.required'=>'标题必填',
+            'title.max'=>'标题不得超过32',
+            'content.required'=>'内容必填'
         ];
+
+        if ($this->validate($request,$rule,$message)){
+            $article = new Article();
+            $result = $article->updateData(['id' => $id],$check_data);
+            if ($result){
+                return redirect()->back()->with('success','更新成功');
+            }else{
+                return redirect()->back()->with('error','更新失败');
+            }
+        }
+    }
+
+
+    public function selfAdd(Request $request){
+        $id=session('user_id');
+        $self_data['account']=Input::post('account');
+        $self_data['username']=Input::post('username');
+        $self_data['pic']= '';
+        $file = $request->file('pic');
+        $user = new User();
+        if ($file) {
+            $ext = $file->getClientOriginalExtension();
+            if ($ext != 'jpg' && $ext!='png') {
+                return redirect()->back()->with('error', '图片格式错误');
+            } else {
+                $path = $request->file('pic')->store('public/images/article');
+                //获取 / 以后的字符串
+                $arr = explode('/', $path);
+                $self_data['pic'] = end($arr);
+            }
+        } else {
+            $row = $user->getRow(['id' => $id]);
+            $self_data['pic'] = $row->pic;
+        }
+        $rule=[
+            'account'=>'required | max:32',
+            'username'=>'required',
+        ];
+        $message=[
+            'account.required'=>'账号必填',
+            'account.max'=>'账号不得超过32',
+            'username.required'=>'网名必填'
+        ];
+        if ($this->validate($request,$rule,$message)){
+            $result = $user->updateData(['id' => $id],$self_data);
+            if ($result){
+                session(['user_account' => $self_data['account'],'pic'=>$self_data['pic'],'user_username'=>$self_data['username']]);
+                return redirect()->back()->with('success','更新成功');
+            }else{
+                return redirect()->back()->with('error','更新失败');
+            }
+        }
     }
 }

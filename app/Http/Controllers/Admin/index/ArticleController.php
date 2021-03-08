@@ -17,7 +17,7 @@ class ArticleController extends Controller {
         }
         return view('Admin/index/article',compact('data'));
     }
-    //删除数据
+    //删除博客
     public function delete(){
         $id = Input::get('id');
         $article = new Article();
@@ -28,7 +28,12 @@ class ArticleController extends Controller {
             return redirect()->back()->with('error','插入失败');
         }
     }
-    //添加
+
+    /**
+     * 详情
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function add(Request $request){
         $data['title'] = Input::post('title');
         $data['user_id'] = Input::post('user_id');
@@ -57,16 +62,20 @@ class ArticleController extends Controller {
             'content.required'=>'内容必填',
         ];
         if ($this->validate($request,$rule,$message)){
-             $article = new Article();
-             $result = $article->insertData($data);
-             if ($result){
-                 return redirect()->back()->with('success','插入成功');
-             }else{
-                 return redirect()->back()->with('error','插入失败');
-             }
+            $article = new Article();
+            $result = $article->insertData($data);
+            if ($result){
+                return redirect()->back()->with('success','插入成功');
+            }else{
+                return redirect()->back()->with('error','插入失败');
+            }
         }
     }
-    //详情
+
+    /**
+     * 详情
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function details(){
         $id = Input::get('id');
         $article = new Article();

@@ -1,6 +1,7 @@
 @extends('App.layout.layout')
 @section('content')
     <section class="container">
+        @include('App.layout.prompt')
         <div class="content-wrap">
             <div class="content">
                 <div class="title">
@@ -12,8 +13,8 @@
                             <h2><a href="/app/index/details?id={{$user->id}}" >{{$user->title}}</a></h2>
                         </header>
                         <p class="meta">
-                            <time class="time"><i class="glyphicon glyphicon-time"></i> {{$user->updated_at}}</time>
-                            <span class="views"><i class="glyphicon glyphicon-eye-open"></i></span> <a class="comment" href="#comment" title="评论" ><i class="glyphicon glyphicon-comment"></i> 4</a></p>
+                            <time class="time"><i class="fa fa-clock-o"></i> {{$user->created_at}}</time>
+                            <a class="comment" title="评论" ><i class="fa fa-comments"></i> 4</a></p>
                         <p class="note"><?php echo mb_substr("$user->content", 0, 150);?></p>
                         <div style="float: right">
                             <button style="width: 80px;height: 30px"><a href="/app/edit?id={{$user->id}}">编辑</a></button>
@@ -37,7 +38,7 @@
             </div>
             <div class="widget widget_hot">
                 <h3>最新评论文章</h3>
-                @include('App.layout.left' , ['data' => $data ])
+                @include('App.layout.left' , ['data' => $new_data ])
             </div>
 
         </aside>

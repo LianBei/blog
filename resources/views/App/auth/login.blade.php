@@ -8,10 +8,44 @@
     <link rel="stylesheet" type="text/css" href="{{asset('css/public.css')}}">
     <script type="text/javascript" src="{{asset('js/jquery-1.4.2.min.js')}}"></script>
     <script type="text/javascript" src="{{asset('js/jquery.SuperSlide.2.1.js')}}"></script>
+    <script language="JavaScript">
+        function startTime()
+        {
+            var today=new Date();//定义日期对象
+            var yyyy = today.getFullYear();//通过日期对象的getFullYear()方法返回年
+            var MM = today.getMonth()+1;//通过日期对象的getMonth()方法返回年
+            var dd = today.getDate();//通过日期对象的getDate()方法返回年
+            var hh=today.getHours();//通过日期对象的getHours方法返回小时
+            var mm=today.getMinutes();//通过日期对象的getMinutes方法返回分钟
+            var ss=today.getSeconds();//通过日期对象的getSeconds方法返回秒
+            // 如果分钟或小时的值小于10，则在其值前加0，比如如果时间是下午3点20分9秒的话，则显示15：20：09
+            MM=checkTime(MM);
+            dd=checkTime(dd);
+            mm=checkTime(mm);
+            ss=checkTime(ss);
+            var day; //用于保存星期（getDay()方法得到星期编号）
+            if(today.getDay()==0)   day   =   "星期日 "
+            if(today.getDay()==1)   day   =   "星期一 "
+            if(today.getDay()==2)   day   =   "星期二 "
+            if(today.getDay()==3)   day   =   "星期三 "
+            if(today.getDay()==4)   day   =   "星期四 "
+            if(today.getDay()==5)   day   =   "星期五 "
+            if(today.getDay()==6)   day   =   "星期六 "
+            document.getElementById('nowDateTimeSpan').innerHTML=yyyy+"-"+MM +"-"+ dd +" " + hh+":"+mm+":"+ss+"   " + day;
+            setTimeout('startTime()',1000);//每一秒中重新加载startTime()方法
+        }
+
+        function checkTime(i)
+        {
+            if (i<10){
+                i="0" + i;
+            }
+            return i;
+        }
+    </script>
 </head>
-<body>
-<!--整体内容开始-->
-@include('Admin.layout.prompt')
+<body onload="startTime()">
+@include('App.layout.prompt')
 <div class="denglu">
     <!--第一部分内容开始-->
     <div class="denglu-first1">
@@ -24,6 +58,7 @@
                     <p>3000多个实力品牌强势入驻</p>
                 </div>
             </div>
+
             <div class="denglu-first1-content-right">
                 <p class="jiamengrexian">快速代理加盟热线</p>
                 <p class="dianhua">132-7595-2026</p>
@@ -52,10 +87,10 @@
                     <div class="focusBox">
                         <div class="bd">
                             <ul>
-                                <li><a  target="_blank" href="#"><img _src="{{asset('storage/images/article/blank.png')}}" src="{{asset('storage/images/article/blank.png')}}" /></a></li>
-                                <li><a  target="_blank" href="#"><img _src="{{asset('storage/images/article/blank1.png')}}" src="{{asset('storage/images/article/blank1.png')}}" /></a></li>
-                                <li><a  target="_blank" href="#"><img _src="{{asset('storage/images/article/blank2.png')}}" src="{{asset('storage/images/article/blank2.png')}}" /></a></li>
-                                <li><a  target="_blank" href="#"><img _src="{{asset('storage/images/article/blank3.png')}}" src="{{asset('storage/images/article/blank3.png')}}" /></a></li>
+                                <li><a  target="_blank"><img _src="{{asset('storage/images/article/blank.png')}}" src="{{asset('storage/images/article/blank.png')}}" /></a></li>
+                                <li><a  target="_blank"><img _src="{{asset('storage/images/article/blank1.png')}}" src="{{asset('storage/images/article/blank1.png')}}" /></a></li>
+                                <li><a  target="_blank"><img _src="{{asset('storage/images/article/blank2.png')}}" src="{{asset('storage/images/article/blank2.png')}}" /></a></li>
+                                <li><a  target="_blank"><img _src="{{asset('storage/images/article/blank3.png')}}" src="{{asset('storage/images/article/blank3.png')}}" /></a></li>
                             </ul>
                         </div>
                         <div class="hd">
@@ -69,8 +104,11 @@
                 </div>
                 <div class="denglu-top-contents">
                     <div class="denglu-top-contents-top">
-                        <p><span>最新公告：</span>最新大V加盟&nbsp;&nbsp;羊毛博客&nbsp;&nbsp;恭喜加盟 !</p>
+                        <font style="text-align: center"><p id="nowDateTimeSpan"></p></font>
+                        <p style="text-align: center"><span>最新公告：</span>最新大V加盟&nbsp;&nbsp;羊毛博客&nbsp;&nbsp;恭喜加盟 !</p>
                     </div>
+                    <br>
+                    <br>
                     <div class="denglu-top-contents-bottom">
                         <div class="contents-bottom-neirong">
                             <div class="contents-bottom-neirong-first1">
@@ -85,13 +123,16 @@
                                         <div class="bd">
                                             <div class="conWrap">
                                                 <div class="con">
+                                                    <br>
+                                                    <br>
                                                     <div class="yonghuming">
                                                         <input type="text" id="name" name="account" value="" placeholder="用户名" class="shurukuang">
                                                     </div>
+                                                    <br>
                                                     <div class="yonghuming-mima">
                                                         <input type="password" id="name" name="password" value="" placeholder="密码" class="shurukuang">
                                                     </div>
-                                                    {{--    必须要写的--}}
+                                                    {{--                                                        必须要写的--}}
                                                     <input type="hidden" name="_token" value="{{csrf_token()}}">
                                                     <a href="/">
                                                         <div class="denglu1">
@@ -99,11 +140,8 @@
                                                         </div>
                                                     </a>
                                     </form>
-
-                                    <div class="xieyi">
-                                        <p>同意<span>《用户使用协议》</span></p>
-                                        <input type="checkbox" class="danxuan" />
-                                    </div>
+                                    <br>
+                                    <br>
                                     <div class="qqdenglu">
                                         <div class="qqdenglu-left">
                                         </div>
@@ -133,7 +171,7 @@
                                         <div class="yonghuming_mima1">
                                             <div class="modal-body">图片:<input type="file" name="pic" id="pic"></div>
                                         </div>
-                                        {{--    必须要写的--}}
+                                        {{--                                            必须要写的--}}
                                         <input type="hidden" name="_token" value="{{csrf_token()}}">
                                         <a href="#">
                                             <div class="denglu1">
@@ -208,9 +246,8 @@
 <!--登录尾部内容开始-->
 <div class="denglu-footer">
     <div class="denglu-footer-content">
-        合肥市*****有限公司 版权所有 2015-2016  皖ICP备10216464645号&nbsp;&nbsp;
+        羊毛有限公司 版权所有&nbsp;&nbsp;
         <a href="#">关于万千E盟</a>&nbsp; |&nbsp;
-        <a href="#">帮助中心</a> &nbsp;|&nbsp;
         <a href="#">网站合作</a>&nbsp;|&nbsp;
         <a href="#">版权说明</a>&nbsp;|&nbsp;
         <a href="#">诚聘英才</a>&nbsp;|&nbsp;

@@ -11,6 +11,11 @@ class CommentController extends Controller {
         $data = $comment->join('article','article.id','=','comment.article_id')->join('user','user.id','=','comment.user_id')->select('comment.*','user.username','article.title')->paginate(5);
         return view('Admin/index/comment',compact('data'));
     }
+
+    /**
+     * 删除评论
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function delete(){
         $id = Input::get('id');
         $comment = new Comment();

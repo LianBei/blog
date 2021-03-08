@@ -38,6 +38,8 @@ Route::group(['middleware' => ['checkLogin']],function (){
     Route::get('app/delete','App\index\InformationselfController@delete');
     //编辑
     Route::get('app/edit','App\index\InformationselfController@edit');
+    //编辑表单提交
+    Route::post('app/index/edit','App\index\InformationselfController@check');
     //评论表单提交
     Route::post('app/comment','App\index\IndexController@comment');
     //退出登录
