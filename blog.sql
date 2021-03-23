@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50721
 File Encoding         : 65001
 
-Date: 2021-02-24 16:59:43
+Date: 2021-03-23 16:44:02
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -21,19 +21,19 @@ SET FOREIGN_KEY_CHECKS=0;
 DROP TABLE IF EXISTS `blog_admin`;
 CREATE TABLE `blog_admin` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `account` varchar(32) COLLATE utf8_unicode_520_ci NOT NULL,
-  `password` varchar(100) COLLATE utf8_unicode_520_ci NOT NULL,
-  `admin_name` varchar(50) COLLATE utf8_unicode_520_ci NOT NULL,
+  `account` varchar(32) CHARACTER SET utf8 NOT NULL,
+  `password` varchar(100) CHARACTER SET utf8 NOT NULL,
+  `admin_name` varchar(50) CHARACTER SET utf8 NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `updated_at` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
-  `tel` varchar(11) COLLATE utf8_unicode_520_ci NOT NULL COMMENT '电话',
+  `tel` varchar(11) CHARACTER SET utf8 NOT NULL COMMENT '电话',
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_520_ci;
 
 -- ----------------------------
 -- Records of blog_admin
 -- ----------------------------
-INSERT INTO `blog_admin` VALUES ('1', '2126234014', '$2y$10$kIZxSMcgbCAgCpiJLQNRh.8w6KkZAaMD9nVBVopxCpHX2FKGN9Sra', '鲸鱼', '2021-02-01 16:32:46', '2021-02-01 16:32:46', '13255075536');
+INSERT INTO `blog_admin` VALUES ('1', '2126234014', '$2y$10$kIZxSMcgbCAgCpiJLQNRh.8w6KkZAaMD9nVBVopxCpHX2FKGN9Sra', '鲸鱼', '2021-03-23 13:52:00', '2021-03-23 05:52:00', '13255075536');
 
 -- ----------------------------
 -- Table structure for `blog_article`
@@ -41,21 +41,33 @@ INSERT INTO `blog_admin` VALUES ('1', '2126234014', '$2y$10$kIZxSMcgbCAgCpiJLQNR
 DROP TABLE IF EXISTS `blog_article`;
 CREATE TABLE `blog_article` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `title` varchar(60) COLLATE utf8_unicode_520_ci NOT NULL COMMENT '文章标题',
-  `pic` varchar(50) COLLATE utf8_unicode_520_ci DEFAULT NULL COMMENT '文章图片',
+  `title` varchar(60) CHARACTER SET utf8 NOT NULL COMMENT '文章标题',
+  `pic` varchar(50) CHARACTER SET utf8 DEFAULT 'default.png' COMMENT '文章图片',
   `user_id` int(32) NOT NULL COMMENT '作者id',
-  `content` text COLLATE utf8_unicode_520_ci NOT NULL COMMENT '内容',
+  `content` text CHARACTER SET utf8 COMMENT '内容',
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `updated_at` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=23 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_520_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=40 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_520_ci;
 
 -- ----------------------------
 -- Records of blog_article
 -- ----------------------------
-INSERT INTO `blog_article` VALUES ('1', '企业微信发布重大更新-微信社群营销管理扩展功能3万企业已率先解锁！', '201610181739277776.jpg', '1', '12月23日，企业微信年度大会召开，今年的核心方向是「社群」。\r\n\r\n同期，企业微信3.1.0版本更新，释放了三大重磅社群功能：\r\n\r\n① 客户群人数扩容，由200人增加到500人,\r\n②外部红包功能开放，支持在客户群和客户单聊发送红包\r\n③ 外部群支持将微信用户设置成群管理员\r\n\r\n企业微信的群聊可以设置个人微信为群管理员，意味着教培机构可以在班级群选举班长、社区团购可以在群内选拔团长等，改动虽小，但意义巨大.\r\n除了这些最新发布的功能之外，其实企业微信早在社群功能储备了许多「超能力」：\r\n\r\n新成员入群自动发送「入群欢迎语」\r\n可以支持1000人「加入群聊」的群活码\r\n自动防止用户发广告和刷屏的「防骚扰」和「黑名单」\r\n@群管理员就可以触发关键词「自动回复」\r\n可以将重复进群的客户一键移除的「群成员去重复」\r\n可以统计不同群聊消息数的「群聊据统计」\r\n经常有人问我，除了官方给出的功能，有没有什么安全且合规的工具，可以实现更多增强能力？\r\n\r\n答案是：有的，并且它还是免费的，这款工具早已经实现了：\r\n\r\n根据客户地理位置分配附近的群聊\r\n按客户标签发送入群邀请\r\n一键发起40人的群聊\r\n追踪特定链接在群聊里的打开者和次数\r\n制定群SOP，定时提醒发送\r\n群抽奖、群打卡、群红包\r\n这款工具叫做「微伴助手」，微伴助手完全基于企业微信的官方接口，以合规的方式实现了 60 多项客户管理能力，也是目前最主流的企业微信营销社群管理工具。', '2021-02-23 17:49:52', '2021-02-23 17:49:52');
-INSERT INTO `blog_article` VALUES ('2', '快速制作动画视频软件 – 万彩动画大师，限时送激活码', '2', '2', '平时在公司需要制作一些动画视频时，很多小伙伴都觉得很难，无从下手。这里给大家说说一款实用性很强的动画视频制作利器——万彩动画大师（www.animiz.cn），操作比 AE、Flash、Premiere 简单得多！你不需要任何的基础，使用它制作动画视频可谓省时省力！它适用于制作动画宣传片、微信动画视频、短视频、广告片、营销动画、趣味课件动画、微课视频等，无论是新手还是专业人士，都同样可以用它来“轻松快速”制作出满意的动画作品\r\n万彩动画大师特色功能\r\n万彩动画大师（www.animiz.cn）这款动画视频制作工具的功能非常完善的了，软件里面也有不少特色功能，而且非常受欢迎哦：\r\n\r\n（1）表情多样，种类繁多的动静态动画角色 （Flash, PNG 和GIF），并且每个角色里面有N种动作，增加动画视频的趣味性跟互动性。\r\n（2）语音合成（输入文字，可选择不同角色，转换为粤语、普通话、各地方言、英文的语音），并能调节音量和音速。\r\n（3）可为加入的元素（如文字、图片等）设置各种炫酷的动画效果\r\n另外，它还有时下很火的“手绘动画”效果\r\n（4）提供上传在线视频功能（可分享到微信朋友圈）\r\n（5）输出成GIF动图（包括透明背景GIF）。\r\n', '2021-02-11 17:09:52', '2021-02-23 17:10:01');
-INSERT INTO `blog_article` VALUES ('3', '12', '4WN1kelmlpj1xJVgNPoaurhq6g5yzJEKGWW9e10S.png', '2', '1231234', '2021-02-24 14:51:52', '2021-02-24 14:51:52');
+INSERT INTO `blog_article` VALUES ('1', '企业微信发布重大更新-微信社群营销管理扩展功能3万企业已率先解锁！', 'default.png', '1', '12月23日，企业微信年度大会召开，今年的核心方向是「社群」。\r\n\r\n同期，企业微信3.1.0版本更新，释放了三大重磅社群功能：\r\n\r\n① 客户群人数扩容，由200人增加到500人,\r\n②外部红包功能开放，支持在客户群和客户单聊发送红包\r\n③ 外部群支持将微信用户设置成群管理员\r\n\r\n企业微信的群聊可以设置个人微信为群管理员，意味着教培机构可以在班级群选举班长、社区团购可以在群内选拔团长等，改动虽小，但意义巨大.\r\n除了这些最新发布的功能之外，其实企业微信早在社群功能储备了许多「超能力」：\r\n\r\n新成员入群自动发送「入群欢迎语」\r\n可以支持1000人「加入群聊」的群活码\r\n自动防止用户发广告和刷屏的「防骚扰」和「黑名单」\r\n@群管理员就可以触发关键词「自动回复」\r\n可以将重复进群的客户一键移除的「群成员去重复」\r\n可以统计不同群聊消息数的「群聊据统计」\r\n经常有人问我，除了官方给出的功能，有没有什么安全且合规的工具，可以实现更多增强能力？\r\n\r\n答案是：有的，并且它还是免费的，这款工具早已经实现了：\r\n\r\n根据客户地理位置分配附近的群聊\r\n按客户标签发送入群邀请\r\n一键发起40人的群聊\r\n追踪特定链接在群聊里的打开者和次数\r\n制定群SOP，定时提醒发送\r\n群抽奖、群打卡、群红包\r\n这款工具叫做「微伴助手」，微伴助手完全基于企业微信的官方接口，以合规的方式实现了 60 多项客户管理能力，也是目前最主流的企业微信营销社群管理工具。', '2021-03-02 16:06:42', '2021-03-02 16:06:42');
+INSERT INTO `blog_article` VALUES ('2', '快速制作动画视频软件 – 万彩动画大师，限时送激活码', 'default.png', '2', '平时在公司需要制作一些动画视频时，很多小伙伴都觉得很难，无从下手。这里给大家说说一款实用性很强的动画视频制作利器——万彩动画大师（www.animiz.cn），操作比 AE、Flash、Premiere 简单得多！你不需要任何的基础，使用它制作动画视频可谓省时省力！它适用于制作动画宣传片、微信动画视频、短视频、广告片、营销动画、趣味课件动画、微课视频等，无论是新手还是专业人士，都同样可以用它来“轻松快速”制作出满意的动画作品\r\n万彩动画大师特色功能\r\n万彩动画大师（www.animiz.cn）这款动画视频制作工具的功能非常完善的了，软件里面也有不少特色功能，而且非常受欢迎哦：\r\n\r\n（1）表情多样，种类繁多的动静态动画角色 （Flash, PNG 和GIF），并且每个角色里面有N种动作，增加动画视频的趣味性跟互动性。\r\n（2）语音合成（输入文字，可选择不同角色，转换为粤语、普通话、各地方言、英文的语音），并能调节音量和音速。\r\n（3）可为加入的元素（如文字、图片等）设置各种炫酷的动画效果\r\n另外，它还有时下很火的“手绘动画”效果\r\n（4）提供上传在线视频功能（可分享到微信朋友圈）\r\n（5）输出成GIF动图（包括透明背景GIF）。\r\n', '2021-03-02 16:05:51', '2021-03-02 16:05:51');
+INSERT INTO `blog_article` VALUES ('3', '大家对计算机专业是鼓励还是劝退？为什么？', 'default.png', '2', '\n两年前，我对计算机专业的态度基本上是劝进的。现在基本上持一个中性态度，我认为这个专业好不好，完全看个人。导致我态度转变的原因，有以下几点：一是计算机考公务员的优势在减弱，很多地方已经不认计算机专硕了。未来是什么趋势，大家其实也说不清。完全看国家和地方的公务员招考政策。二是计算机行业的准入门槛持续升高。基本门槛就是两电一邮，以前那个专科生都可以入行，然后发大财的时代一去不复返啦。大家都觉得计算机很卷。但计算机的卷和其他行业还不太一样。生化环材机械土木的卷是从业者严重过剩，导致从业者溢价能力弱，长期待遇很低。计算机则不然，计算机行业起薪年年上涨。如果从业者严重过剩，这根本不可理解。在我看来，计算机的卷来自于这个行业的人自驱力太他妈强了。因为计算机这行有大量的人。哪怕领导和资本家不用996压榨。他们也恨不得每天工作16个小时，恨不得一周工作七天。一天可能已经上了12小时班了，回家还要学两三个小时新技术。在这种环境下工作真的会有一种窒息感。所以鼓励还是劝退完全看个人是不是这块料。有的人超爱写代码，写代码写的如痴如醉，废寝忘食。对于这种人，在超级卷的环境里他们也不会觉得累，相反觉得很享受。那这种人真的很适合计算机行业。如果你写代码是苦手，觉得很痛苦，写代码就是在折磨自己。那你真的不适合计算机行业。但也可以学计算机专业。毕业就去银行it呀，还有各种甲方单位，提提需求就好了。', '2021-03-23 13:55:56', '2021-03-23 13:55:56');
+INSERT INTO `blog_article` VALUES ('23', '计算机还能火多久呢?', 'v2-95d688acc0b5cccf75f6db2c8321af71_720w.jpg', '2', '\n师范，永远滴神；医学，永远滴神；公务员，永远滴神；法学，永远滴神；是的，我在知乎上吹师医公，吹法律，吹体制内；但这都是站在我中产家庭的情况下说的。对于农村贫困家庭，师医公法恐怕都不是最明智的选择，对于穷人家的孩子，需要钱就去赚钱，用钱去解决家庭中的问题。对于穷人家的孩子，年轻的时候需要钱买房结婚，家里帮不上忙，只能靠自己。师医公法这些后期型职业，恰恰年轻时给不了穷人家孩子太多帮助。起薪给年轻人最多的恐怕就是计算机了。而且起薪还有不断提高的趋势。年轻时干互联网，挣笔钱作为人生的启动资金，到了三十来岁考公上岸或者转进金融机构it部门，也是不错的规划。至于互联网大厂高薪还能火多久，我再复述一遍我的雇佣兵理论：首先，很多人没有理解程序员的本质，虽然程序员自黑自己是码农，但程序员性质并不接近农民，而是更接近雇佣兵。现在互联网从增量时代进入存量时代。大家都没有办法把蛋糕做大了，就只能相互抢对方的蛋糕了。要想抢蛋糕就必须要有能打仗的雇佣兵军团，因为计算机行业的“人月神话”，单纯堆人数并没有办法提高战斗力，提高战斗力的最佳方式是提高单兵素质。但中国互联网大厂的兵源非常有限，基本就中游以上985+两电一邮，大多数互联网大厂员工都是这样的出身背景。一方面，至于为啥不扩大学校范围，我觉得一大原因是其他大学计算机教育的水平实在太差了，远远无法满足大厂的需求。一方面，兵源学校的计算机类专业扩招非常有限。哈工大现在的计算机类专业毕业生数量和十年前本差不多。所以互联网大厂就只能在一个小池子里抢人，抢得越凶，互联网起薪就越高。', '2021-03-23 13:48:27', '2021-03-23 13:48:27');
+INSERT INTO `blog_article` VALUES ('36', '有没有哪个时刻让你突然感觉到：「我的计算机专业白学了」？', 'v2-dbf09d221c6f556d918e25e4d54c78bb_720w.jpg', '10', '在学校眼镜店配眼镜时，发现老板的女儿，一个三年级的小妹妹已经开始写算法题目时....内心久久无法平静....当时在等着老板给我配眼镜，简单看了下题目，是一道自定义排序+贪心，放在我大一，ac这个问题都够呛。等什么呢，学计算机要从娃娃抓起。---------------------------补充分割线-------------------------------------评论里有人讨论小妹妹的年纪，这个我当时特地问过她妈妈，不是三年级就是五年级，但确定是小学生。她妈妈的意思是培养孩子一个兴趣爱好，让她可以在以后凭借特长生的身份进入好的初中，高中，我不太清楚现在的政策可以这样？还有，现在家长培养女孩子的兴趣爱好已经不再是跳舞，钢琴之流，改信息竞赛了？大雾)关于IDE的问题，忘了具体是什么了，在下是codeblocks党，据说金牌大佬都是用vim？问了一下小妹妹，以前小学生参加信息竞赛都是pascal，但他们现在都是用c++了，报班的人数还不少。\n', '2021-03-23 13:56:58', '2021-03-23 13:56:58');
+INSERT INTO `blog_article` VALUES ('26', '零基础怎样在一个月内通过计算机三级网络技术?', 'v2-b58a19a0fcf778a7d81a95ddf6bed065_1440w.jpg', '1', '1.网站和网页的区别：\r\n在浏览器的地址栏输入的任何一个地址打开后就是一个网站，打开网站发现有许多链接，链接打开有页面，每个页面就是一个网页，因此可以说网站如果是一本书，那么网页就是其中的每一页，但是网站又不完全等同于书本，因为有的网站只有一个网页，这种网站叫做单页面网站，主要用于广告宣传，相信大家也都见过。补充一点，我们常说的网站一般是顶级域名。\r\n2.JavaScript：\r\n计算机语言：\r\n机器语言：由“0”和“1”组成。\r\n编程语言类似于人类语言的“语言”来控制计算机，让计算机为我们做事。\r\nJavaScript（简称“JS”） 是一种具有函数优先的轻量级，解释型或即时编译型的编程语言。虽然它是作为开发Web页面的脚本语言而出名，但是它也被用到了很多非浏览器环境中，JavaScript 基于原型编程、多范式的动态脚本语言，并且支持面向对象、命令式和声明式（如函数式编程）风格。其组成:\r\n主要功能￼\r\n1.嵌入动态文本于HTML页面。\r\n2.对浏览器事件做出响应。\r\n3.读写HTML元素。\r\n4.在数据被提交到服务器之前验证数据。\r\n5.检测访客的浏览器信息。\r\n控制cookies，包括创建和修改等。\r\n6.基于Node.js技术进行服务器端编程。', '2021-03-23 13:59:55', '2021-03-23 13:59:55');
+INSERT INTO `blog_article` VALUES ('27', 'Cmd 命令提示符', 'default.png', '1', '一. 打开命令窗口\r\n**\r\n1.windows+R 运行。\r\n2.右键开始菜单 打开运行\r\n3.右键开始菜单 windows PowerShell\r\n\r\n**\r\n\r\n二. 切换盘符 (C盘,D盘)\r\n**\r\n盘名 c: d:\r\n\r\n**\r\n\r\n三.查看当前盘符内容\r\n**\r\ndir\r\n\r\n**\r\n\r\n四.快捷方式\r\n**\r\n1.文件首字母+Tab 键( 快捷的输入某个文件夹名)\r\n2.箭头上下,查看历史记录\r\n\r\n**\r\n\r\n五.切换命令cd\r\n**\r\n2. cd/ 根目录\r\n2. cd…/ 上级根目录\r\n3. cd 文件夹名 切换到某个文件夹\r\n\r\n**\r\n\r\n六.文件夹 操作\r\n**\r\n1.创建:md文件夹名\r\n2.删除:rd文件名\r\n3.删除文件:del 文件名\r\n4.删除文件夹所有文件:del 文件夹*.*\r\n5.删除文件夹和里面的内容 rd /s /q文件夹名\r\n6.拷贝:copy 文件夹/文件名 新的文件夹地址(用反斜杠)\r\n7.移动:move 文件夹/文件名 新的文件夹地址 (同上)\r\n\r\n**\r\n\r\n七.其他命令\r\n**\r\n1.cls 清空屏幕\r\n2.ipconfig 查看ip\r\n3.ping 主机 查看当前电脑和另外一台是否联通\r\n例子:\r\nping www.baidu.com\r\nping 192.168.16.254\r\n4.help 帮助\r\n5.calc 打开计算机\r\n6.ctrl + C 结束当前命令', '2021-03-02 16:05:48', '2021-03-02 16:05:48');
+INSERT INTO `blog_article` VALUES ('28', 'python利用numpy存取文件', 'v2-1ac5a7e7dd04113abc474c278534cd93_720w.png', '1', 'NumPy提供了多种存取数组内容的文件操作函数。保存数组数据的文件可以是二进制格式或者文本格式。二进制格式的文件又分为NumPy专用的格式化二进制类型和无格式类型。\r\n\r\nnumpy格式的文件可以保存为后缀为（.npy/.npz）格式的文件\r\n\r\n1. tofile()和fromfile()\r\n\r\ntofile()将数组中的数据以二进制格式写进文件\r\ntofile()输出的数据不保存数组形状和元素类型等信息\r\nfromfile()函数读回数据时需要用户指定元素类型，并对数组的形状进行适当的修改\r\n\r\n2. save() 和 load(),savez()\r\n\r\nNumPy专用的二进制格式保存数据，它们会自动处理元素类型和形状等信息\r\n如果想将多个数组保存到一个文件中，可以使用savez()\r\nsavez()的第一个参数是文件名，其后的参数都是需要保存的数组，也可以使用关键字参数为数组起名\r\n非关键字参数传递的数组会自动起名为arr_0、arr_1、...。\r\nsavez()输出的是一个扩展名为npz的压缩文件，其中每个文件都是一个save()保存的npy文件，文件名和数组名相同\r\nload()自动识别npz文件，并且返回一个类似于字典的对象，可以通过数组名作为键获取数组的内容\r\n3. savetxt() 和 loadtxt()\r\n\r\n读写1维和2维数组的文本文件\r\n可以用它们读写CSV格式的文本文件', '2021-03-23 14:01:14', '2021-03-23 14:01:14');
+INSERT INTO `blog_article` VALUES ('29', '【离散数学】思维导图', 'default.png', '1', '1.why学\r\n离散数学是【数学】和【计算机】的桥梁，其最重要的内容是数论和图论。\r\n\r\n数学本质——抽象；\r\n计算机本质——算法（是抽象的一种）。\r\n\r\n一般人学算法则够用，但是如果将算法“抽象”到理论高度，如将DFS、dijstra算法等进行证明算法正确性、有效性、局限性，就需要学离散数学。\r\n\r\n（1）实际应用\r\n如正则表达式（练习网站RegexOne：https://regexone.com/）\r\n\r\n（2）应试重点\r\n在知乎上看到国内外大学学习的重点对比图：', '2021-03-02 16:13:37', null);
+INSERT INTO `blog_article` VALUES ('30', 'Go：简介和特点', 'default.png', '1', '一、Go是什么？\r\nGo是一门非常年轻的语言，07年起源于谷歌，09年对外开源，12年才发布第一个对外版本Go 1.0，有关Go的起源轶事感兴趣的同学可以私下去了解一下；现在主流的编程语言大概有10几种，从1945年第一台计算机诞生至今，程序员们一直致力于怎样让计算机更准确高效地了解人类想要它们完成的任务，所谓编程就是架起人和机器之间的桥梁，现代工业让计算机算力越来越强，为了和计算机沟通更方便，这些年出现的语言轻量，高效，安全是主流方向。Go语言作为后起之秀，主要目标就是“兼顾Python等动态语言的开发速度和C/C++等编译型语言的性能和安全性”。\r\n\r\n二、和同行的对比\r\n有关“谁是最好的编程语言？”这个论题在各大论坛上一直是争论不休，从业人员其实也都知道，没有最好的语言，也没有最通用的框架，抛开业务场景谈能力都是耍流氓，这里简单的将Go语言横向的和其他语言进行对比，无意褒贬，意在突出Go语言本身的优劣。\r\n\r\n1、语言的分类\r\n按照语言的发达程度可以分类为：\r\na.机器语言：\r\n\r\n机器语言顾名思义就是不需要翻译机器就能看懂的语言，也就是通常我们理解的”0“和”1“，人类很难识别和记忆，但机器硬件很容易明白。\r\n\r\nb.汇编语言：\r\n\r\n汇编语言是一种用于电子计算机、微处理器、微控制器或其他可编程器件的低级语言，亦称为符号语言。在汇编语言中，用助记符（Mnemonics）代替机器指令的操操作码，用地址符号（Symbol）或标号（Label）代替指令或操作数的地址。在不同的设备中，汇编语言对应着不同的机器语言指令集，通过汇编过程转换成机器指令。普遍地说，特定的汇编语言和特定的机器语言指令集是一一对应的,不同平台之间不可直接移植。\r\n\r\n有关汇编语言和GO语言的关系后面会单独讲解。\r\n\r\nc.高级语言：\r\n\r\n前面两类都属于低级语言，所谓高级语言就是更符合人类思维方式的语言，经过翻译最终转化为能够被机器识别的机器语言，高级语言里也有很多细分的标准，比如：\r\n\r\n1、”面向类“的高级编程语言和”面向对象“的高级编程语言；\r\n2、编译型高级编程语言（C/C++，Java等）和解释型高级编程语言（JavaScript，Python等）；\r\n3、强类型语言（静态语言 C/C++，Java等）和弱类型语言（动态语言，PHP，JavaScript，Python等）', '2021-03-02 16:14:16', null);
+INSERT INTO `blog_article` VALUES ('31', '计算机二级office难吗？', 'v2-093bbbfb9c890e418495f6a2b1c9010d_720w.jpg', '1', '\n\n上一年报考计算机二级，考试中心会跳出一个窗口，二级office通过率只有21.07%，请谨慎报考。可见，通过率并不高，因此高手课小编我总结了一些经验，下面分享给大家。题库的由来二级从第一次决定开考，当时题库，只有2套题。但是现在为啥你的题库有20-30多套题呢？就是考前新增，每次开考前（3月份或者9月份，当然部分地区12月份也会开考）都会有新增题，而新增题的套数一般为2-3套题。逐年逐次的考前新增题+当初开考的2套，就是20-30多套题（不同科目不同）。举个例子：假如第一次二级开考为三月份，那么下次开考可定就是九月份，那么九月份考试的题库哪里来的呢？就是三月份的2套题加上+9月份的考前新增题（2-3套），这就是，九月份的考试题库。而考场上，电脑随机抽出一套题，就是你的考试题。而往年考试题的累计，就是现在你手中的计算机题库，说白了就是往年逐年累计的考试题库+你的考前新增题，当你考试时，电脑随机（将你题库中所有的word excel ppt套数重新打乱，然后重新组合）从这个题库抽出一套题，就是你的考试题。所以，考过二级的同学，考过之后，就会感概，我++，我居然碰到啦原题，那一套我当时练的时候，多注意一下，这套题我就拿分啦，无奈是考试已经结束。高手课承包了你大学考试所需要的考试资料、职业考试资料、软件以及教程。', '2021-03-23 14:04:24', '2021-03-23 14:04:24');
+INSERT INTO `blog_article` VALUES ('38', '1', 'default.png', '9', '1q', '2021-03-23 16:30:11', '2021-03-23 16:30:11');
+INSERT INTO `blog_article` VALUES ('39', 'sacfsad', 'u5zQtWZz1icgcWCfmiK6aZdyOIkyz431NAspTWVc.png', '9', 'sdavgsdav', '2021-03-23 16:26:17', null);
+INSERT INTO `blog_article` VALUES ('32', '写博客能月入10K？', 'default.png', '1', '对于写博客这件事情，我还是非常有经验的，我大概从大二开始写博客，一直持续到现在已经有6年的时间了，应该说是积累了一些经验，今天跟大家聊聊。\r\n\r\n在大学的时候，写博客的初心其实就是记录一些学习的知识，那个时候，因为很多技术都不是很了解，所以每天需要有大量的学习，我以前也在公众号说过，我最开始学习计算机的时候，其实是比较疯狂的，一天学习的时间大概在12个小时，记得当时在大一的时候就摸索了很多的学习方法，比如看书，上课学习计算机的基础知识，后来，我才发现，其实，最快的方法就是看视频，当然，这是针对初学者，为什么这么说呢，初学者因为没有任何的经验，如果看书等方法特别枯燥无味，难以坚持下去，而看视频的方式，有人带着你学，而且可以通过视频的方式看到整个代码的编写过程，这一点是非常重要的。因此，其实我也是通过看视频的方式来学习编程的，一直走到现在，后期当你有一定的基础了之后，看视频可能就不是最好的方式了。\r\n\r\n回到这个话题，正是因为当时每天大量的学习，同时，每天学了之后，发现过几天就很容易忘记，当时，我看到很多人都有写博客的习惯，也看了很多大佬的博客，因此，我也就慢慢的通过写博客的形式把我当时学过的知识记录下来，刚开始的时候，写文章其实是很难的，不知道怎么下手，但是，坚持了一段时间之后，我的文章就多了起来，同时也有一些阅读量，这就让我有了更大的动力写文章，从大二开始，到现在，大部分的文章都是在CSDN上面写的，经过这些年的积累，CSDN的访问量也已经达到了200多W，对我来说，数字并不重要，重要的是看到了我这些年来的进步，这些积累现在看来也是非常重要的，到我读研究生，找工作都是有很大的帮助的。\r\n\r\n上面说了这么多，第一个好处我想说的就是积累，当你积累的多的时候，量变就会产生质变，这种积累不管是你个人的技术的积累，还是个人的IP的积累，都是无形的财富。\r\n\r\n其次，我想说的就是写博客能够很好的锻炼你的写作能力，我记得在大学的时候，我问过一个做培训的大佬，我问他，我说：“在工作中什么能力是最重要的呢”？当时，他给了我几个答案，第一是技术能力，第二是写文档的能力，第三是沟通能力。当时，我刚刚大三，对于技术只是一知半解，学的并不深入，但是，从这个回答中我得到了一个很重要的能力，那就是写作能力。对于写作能力，在我看来，跟上学的时候写作文的能力还是不一样的，这并不需要你很好的文采，你只要把你的观点表达清楚就行了。\r\n\r\n经过这些年的写博客的锻炼，我的写作能力确实得到了很大的提升，从最开始的写一篇文章需要憋好久，到现在基本上信手拈来，其实写作能力有了很大的飞跃，而这一点到现在也很受用。\r\n\r\n在今年暑期在腾讯实习的时候，我感受到了写作能力带给我的帮助，在腾讯实习的时候，我遇到了很多的问题，期间也是解决了很多的问题，当时，因为我有写博客的习惯，我就会把遇到的问题全部总结出来，然后发到公司的技术平台上，在我实习的时候，我竟然发现有一篇文章在平台上有很多人关注，也有人打赏，这一点其实是我没有想到的，我想我作为一个无名之辈，竟然有人给我打赏，内心还是有一丝喜悦的，后来也一直都有人来咨询我当时的一些解决办法，这其实都是平时写作的习惯所带来的连锁效应。最后，在我实习答辩的时候，当时写的这些文章也是对我有帮助的，具体的就不多说了，大家懂就行了。\r\n\r\n另外，这些年我写作在CSDN积累的博客访问量和博客专家的称号，对我找工作也是有一定的帮助的，我印象非常深刻的就是在我面试的时候，当我介绍我的博客的访问量和博客专家的称号的时候，面试官竟然发出这样的疑惑：“这么厉害”？然后，这个面试官就想考察我的能力，拿了几个很难的算法题刁难我，这样的面试其实我是很生气的，但是，这些东西对我进入到面试，或者说拿一个更好的评级是非常有帮助的。\r\n\r\n最后，还想谈一点，写博客其实可以作为副业赚钱，如果我没有这6年的写作的积累，也许你就看不到我今天分享的这篇文章，因为，我也不太可能会做公众号，同时，把公众号作为副业，作为我的一部分收入，老读者应该都知道，我公众号全网粉丝达到15w，这些其实都是我当时写博客的时候慢慢做起来的，没有这些年写博客的经历，就不会有想法说做公众号，所以，写博客对我来说是非常重要的，现在我已经依靠它恰饭，作为我收入的很大一部分。\r\n\r\n在这篇文章的结尾，简单的总结一下，作为一名程序员，写博客不仅可以记录你学习的技术，也可以积累个人ip，在工作中可能会成为很重要的一项能力，作为副业，也是可以为你带来不小的一笔收入。以上就是我的经验分享，不管你现在处于哪个阶段，我觉得写作都重要，现在开始也都不晚，希望对大家有帮助。', '2021-03-02 16:21:18', null);
+INSERT INTO `blog_article` VALUES ('37', '关于孤独，怎样的描述最能引起你的共鸣？', 'bqvZemDggMUE7AMRDUONVhB7EvJpzaEBctP4xa7s.jpeg', '9', '我去打网球了，拍了照片发到朋友圈，\r\n\r\n没有人回复。\r\n\r\n第二天起床，发现有一条消息提示，瞬间睡意全无，兴奋地打开手机查看。\r\n\r\n“大哥，你这对面没人啊？”心中莫名有些惆怅。\r\n\r\n于是我把这个故事写下来发到知乎上，\r\n\r\n没有一个人点赞。', '2021-03-23 14:06:13', null);
 
 -- ----------------------------
 -- Table structure for `blog_comment`
@@ -63,13 +75,13 @@ INSERT INTO `blog_article` VALUES ('3', '12', '4WN1kelmlpj1xJVgNPoaurhq6g5yzJEKG
 DROP TABLE IF EXISTS `blog_comment`;
 CREATE TABLE `blog_comment` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `comment` varchar(200) COLLATE utf8_unicode_520_ci NOT NULL,
-  `created_at` timestamp NOT NULL ON UPDATE CURRENT_TIMESTAMP,
+  `comment` varchar(200) CHARACTER SET utf8 NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `updated_at` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   `article_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_520_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_520_ci;
 
 -- ----------------------------
 -- Records of blog_comment
@@ -80,6 +92,7 @@ INSERT INTO `blog_comment` VALUES ('3', '太厉害了', '2021-02-03 13:39:48', '
 INSERT INTO `blog_comment` VALUES ('4', '说的太有道理了', '2021-02-03 13:40:10', '2021-02-03 13:40:10', '4', '3');
 INSERT INTO `blog_comment` VALUES ('5', '3', '2021-02-03 13:40:20', '2021-02-03 13:40:20', '1', '1');
 INSERT INTO `blog_comment` VALUES ('6', '4', '2021-02-03 13:40:25', '2021-02-03 13:40:25', '2', '3');
+INSERT INTO `blog_comment` VALUES ('7', 'rthtdryjr', '2021-03-03 10:52:58', null, '23', '1');
 
 -- ----------------------------
 -- Table structure for `blog_user`
@@ -87,19 +100,35 @@ INSERT INTO `blog_comment` VALUES ('6', '4', '2021-02-03 13:40:25', '2021-02-03 
 DROP TABLE IF EXISTS `blog_user`;
 CREATE TABLE `blog_user` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `account` varchar(32) COLLATE utf8_unicode_520_ci NOT NULL,
-  `password` varchar(128) COLLATE utf8_unicode_520_ci NOT NULL,
-  `username` varchar(32) COLLATE utf8_unicode_520_ci NOT NULL,
-  `pic` varchar(256) COLLATE utf8_unicode_520_ci NOT NULL DEFAULT 'default.png',
+  `account` varchar(32) CHARACTER SET utf8 NOT NULL,
+  `password` varchar(128) CHARACTER SET utf8 NOT NULL,
+  `username` varchar(32) CHARACTER SET utf8 NOT NULL,
+  `pic` varchar(256) CHARACTER SET utf8 NOT NULL DEFAULT 'default.png',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_520_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_520_ci;
 
 -- ----------------------------
 -- Records of blog_user
 -- ----------------------------
-INSERT INTO `blog_user` VALUES ('1', '1', '$2y$10$kIZxSMcgbCAgCpiJLQNRh.8w6KkZAaMD9nVBVopxCpHX2FKGN9Sra', '连蓓', 'default.png');
+INSERT INTO `blog_user` VALUES ('1', '3', '$2y$10$kIZxSMcgbCAgCpiJLQNRh.8w6KkZAaMD9nVBVopxCpHX2FKGN9Sra', '连蓓', 'y1XM8rhIFqeoSbGhpedwRZtSYUajih0jNkEs7ylk.jpeg');
 INSERT INTO `blog_user` VALUES ('2', '2', '2', '老大', 'default.png');
 INSERT INTO `blog_user` VALUES ('3', '3', '3', '⁮杨倩', 'default.png');
 INSERT INTO `blog_user` VALUES ('4', '4', '4', '洪国忠', 'default.png');
-INSERT INTO `blog_user` VALUES ('5', '12', '12', '12', 'default.png');
-INSERT INTO `blog_user` VALUES ('6', '42', '42', '42', 'default.png');
+INSERT INTO `blog_user` VALUES ('9', '13', '$2y$10$RrZIjPJJ.In/UZsjrLEiZuWAtBFKzvE0T3y8ujA.JErEj8hAEVFJK', '12', 'default.png');
+INSERT INTO `blog_user` VALUES ('8', '1234', '$2y$10$G8lDQXx/ge1yNoyxawW3TePaXUbSYHlXSHfPxxCB6rxdjGdAGlgv2', '1234', 'EVqm6CAryhCp2pmOxLR8V0qzNcJyXBxwVfxN1e1u.jpeg');
+INSERT INTO `blog_user` VALUES ('10', 'wxg', '$2y$10$IoPoCYQmaoLfvO.JZ46yt.B5YrKfCT8Wxm77orAsMSdmfEPOwuQzK', 'wxg', 'UOlh1Wc3APc8DWVM53f8OZkPayxEXbijRSQNEuOu.jpeg');
+
+-- ----------------------------
+-- Table structure for `blog_vue`
+-- ----------------------------
+DROP TABLE IF EXISTS `blog_vue`;
+CREATE TABLE `blog_vue` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `account` varchar(50) CHARACTER SET utf8 NOT NULL,
+  `password` varchar(50) CHARACTER SET utf8 NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_520_ci;
+
+-- ----------------------------
+-- Records of blog_vue
+-- ----------------------------
