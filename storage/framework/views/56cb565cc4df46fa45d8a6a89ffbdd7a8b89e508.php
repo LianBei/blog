@@ -1,6 +1,6 @@
 <?php if(session('error')): ?>
     <div class="alert alert-danger" role="alert">
-        <a href="#" class="alert-link"><<h2><?php echo e(session('error')); ?></h2></a>
+        <a href="#" class="alert-link"><h2><?php echo e(session('error')); ?></h2></a>
     </div>
 <?php endif; ?>
 <?php if(session('success')): ?>

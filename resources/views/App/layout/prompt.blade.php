@@ -1,6 +1,6 @@
 @if(session('error'))
     <div class="alert alert-danger" role="alert">
-        <a href="#" class="alert-link"><<h2>{{session('error')}}</h2></a>
+        <a href="#" class="alert-link"><h2>{{session('error')}}</h2></a>
     </div>
 @endif
 @if(session('success'))

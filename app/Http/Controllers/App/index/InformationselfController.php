@@ -48,6 +48,7 @@ class InformationselfController extends Controller{
     //编辑表单提交
     public function check(Request $request){
         $id = Input::post('id');
+        $article = new Article();
         $check_data['title']=Input::post('title');
         $check_data['content']=Input::post('content');
         $file = $request->file('pic');
@@ -61,6 +62,9 @@ class InformationselfController extends Controller{
                 $arr = explode('/', $path);
                 $check_data['pic'] = end($arr);
             }
+        }else {
+            $row = $article->getRow(['id' => $id]);
+            $check_data['pic'] = $row->pic;
         }
         $rule=[
             'title'=>'required | max:32',
@@ -73,7 +77,6 @@ class InformationselfController extends Controller{
         ];
 
         if ($this->validate($request,$rule,$message)){
-            $article = new Article();
             $result = $article->updateData(['id' => $id],$check_data);
             if ($result){
                 return redirect()->back()->with('success','更新成功');
