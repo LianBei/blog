@@ -4,7 +4,7 @@
     <section class="container">
         <div class="content-wrap">
             @include('App.layout.prompt')
-            <div class="content">
+            <div class="">
                 <div class="title">
                     <h1 style="line-height: 1.8;text-align: center">编辑文章</h1>
                 </div>

@@ -12,6 +12,7 @@ class LoginController extends Controller {
     public function index(){
         return view('App/auth/login');
     }
+
     public function check(Request $request) {
         $data['account'] = Input::post('account');
         $data['password'] = Input::post('password');

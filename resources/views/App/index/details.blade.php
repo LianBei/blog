@@ -10,7 +10,7 @@
 	  <time class="time" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="发表时间：{{$data->created_at}}"><i class="fa fa-clock-o"></i>{{$data->created_at}}</time>
 	  </span> <span class="item article-meta-source" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="来源：羊毛博客网"><i class="glyphicon glyphicon-globe"></i> 羊毛博客网</span> <span class="item article-meta-category" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="MZ-NetBlog主题"><i class="glyphicon glyphicon-list"></i> <a href="#" title="MZ-NetBlog主题" >{{$data->user_id}}</a></span> <span class="item article-meta-views" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="浏览量：219"><i class="glyphicon glyphicon-eye-open"></i> 219</span> <span class="item article-meta-comment" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="评论量"><i class="fa fa-comments"></i> 4</span> </div>
                 </header>
-                <article class="article-content">
+                <article >
                     @if($data->pic!='default.png')
                         <img src="{{asset('storage/images/article/'.$data->pic)}}" alt="" />
                     @endif

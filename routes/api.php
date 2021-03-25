@@ -15,3 +15,8 @@ use Illuminate\Http\Request;
 
 Route::post('login','vue\LoginController@login');
 Route::post('time1','vue\LoginController@time1');
+Route::post('getPassword','vue\LoginController@getPassword');
+Route::get('getAll','vue\LoginController@getAll');
+Route::get('deleteUser','vue\LoginController@deleteUser');
+Route::post('addUser','vue\LoginController@addUser');
+Route::Post('editUser','vue\LoginController@editUser');

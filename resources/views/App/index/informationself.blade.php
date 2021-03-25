@@ -38,7 +38,7 @@
             </div>
             <div class="widget widget_hot">
                 <h3>最新评论文章</h3>
-                @include('App.layout.left' , ['data' => $new_data ])
+                @include('App.layout.left' , ['data' => $data ])
             </div>
 
         </aside>

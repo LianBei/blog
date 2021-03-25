@@ -37,7 +37,7 @@
             </div>
             <div class="widget widget_hot">
                 <h3>最新评论文章</h3>
-                <?php echo $__env->make('App.layout.left' , ['data' => $new_data ], array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
+                <?php echo $__env->make('App.layout.left' , ['data' => $data ], array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>
             </div>
 
         </aside>
