@@ -13,7 +13,7 @@ class CommonModel extends Model{
      * @param array $order     排序条件
      * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator|\Illuminate\Support\Collection
      */
-    public function getAllData(int $pageNumber, array $condition=[] ,array $order=['id'=>'asc']) {
+    public function getAllData(int $pageNumber = 0, array $condition=[] ,array $order=['id'=>'asc']) {
         $obj = DB::table($this->table);
         if ($pageNumber) {
             if ($condition) {
