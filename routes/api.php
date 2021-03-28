@@ -25,3 +25,10 @@ Route::get('getUser','vue\ListController@getUser');
 Route::get('deleteUser2','vue\ListController@deleteUser2');
 Route::post('editUser2','vue\ListController@editUser2');
 Route::post('addUser2','vue\ListController@addUser2');
+
+
+Route::get('getUser3','vue\BlogController@getUser3');
+Route::get('deleteUser3','vue\BlogController@deleteUser3');
+Route::post('editUser3','vue\BlogController@editUser3');
+Route::post('addUser3','vue\BlogController@addUser3');
+Route::get('likeUser','vue\BlogController@likeUser');
