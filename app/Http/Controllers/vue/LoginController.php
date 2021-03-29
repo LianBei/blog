@@ -28,7 +28,12 @@ class LoginController extends Controller{
     }
     public function getAll(){
         $vue = new Vue();
-        $data = $vue->getAllData('2',[],['id'=>'desc']);
+        $like = Input::get('like');
+        if ($like){
+            $data=$vue->getLikeData('3',['account'=>$like]);
+        }else{
+            $data = $vue->getAllData('2',[],['id'=>'desc']);
+        }
         echo json_encode($data);
     }
     public function deleteUser(){
