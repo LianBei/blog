@@ -15,7 +15,7 @@ class BlogController extends Controller{
         if ($like){
             $data = $vue->getLikeData('2',['account'=>$like]);
         }else{
-            $data = $vue->getAllData('2',[],['id'=>'esc']);
+            $data = $vue->getAllData('2',[],['id'=>'asc']);
         }
         echo json_encode($data);
     }
