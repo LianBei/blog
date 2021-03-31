@@ -14,7 +14,8 @@ class LoginController extends Controller{
         $vue = new Vue();
         $data['account'] = Input::post('account');
         $data['password'] =Input::post('password');
-        $login = $vue->where('');
+        $login = $vue->where(['account'=>$data['account'],'password'=>$data['password']])->frist();
+        echo json_encode($login);
     }
     public function time1(){
         $value1 = Input::post('value1');
@@ -24,7 +25,17 @@ class LoginController extends Controller{
         $vue = new Vue();
         $id = Input::post('id');
         $data = $vue->getRow(['id'=>$id]);
-        echo json_encode($data);
+        if ($data){
+            return response()->json([
+                'code' => 0,
+                'message' => 'ok'
+            ]);
+        } else {
+            return response()->json([
+                'code' => 1,
+                'message' => 'error'
+            ]);
+        }
     }
     public function getAll(){
         $vue = new Vue();

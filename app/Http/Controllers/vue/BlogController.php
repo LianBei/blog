@@ -12,6 +12,8 @@ class BlogController extends Controller{
     public function getUser3(){
         $vue = new Vue();
         $like = Input::get('like');
+//        定时器
+        sleep(1);
         if ($like){
             $data = $vue->getLikeData('2',['account'=>$like]);
         }else{
